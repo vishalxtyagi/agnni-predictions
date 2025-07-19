@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.dotted-thick-border {
+    border: 3px dotted white;
+    border-spacing: 18px;
+  }
