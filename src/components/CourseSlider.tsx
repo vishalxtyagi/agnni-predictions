@@ -7,10 +7,10 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import CrownDecoration from './CrownDecoration';
-import Service1 from '../assets/images/service1.webp';
-import Service2 from '../assets/images/service2.webp';
-import Service3 from '../assets/images/service3.webp';
-import Service4 from '../assets/images/service4.webp';
+import Service1 from '../assets/images/services/tarot-reading.webp';
+import Service2 from '../assets/images/services/angel-reading.webp';
+import Service3 from '../assets/images/services/crystal-healing.webp';
+import Service4 from '../assets/images/services/vastu-consultation.webp';
 
 interface Course {
   image: string;

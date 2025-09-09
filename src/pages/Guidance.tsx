@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import background from "../assets/images/background.jpg";
+import background from "../assets/images/backgrounds/purple-gradient.webp";
 import Navbar from "../components/Navbar";
 import FooterMenu from "../components/FooterMenu";
 import NewsLetter from "../components/NewsLetter";

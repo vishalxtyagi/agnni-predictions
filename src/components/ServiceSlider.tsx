@@ -5,32 +5,78 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import CrownDecoration from './CrownDecoration';
-import Service1 from '../assets/images/service1.webp';
-import Service2 from '../assets/images/service2.webp';
-import Service3 from '../assets/images/service3.webp';
-import Service4 from '../assets/images/service4.webp';
+import TarotReading from '../assets/images/services/tarot-reading.webp';
+import AngelReading from '../assets/images/services/angel-reading.webp';
+import CrystalHealing from '../assets/images/services/crystal-healing.webp';
+import VastuConsultation from '../assets/images/services/vastu-consultation.webp';
+import Numerology from '../assets/images/services/numerology-report.webp';
+import AstrologicalPredictions from '../assets/images/services/astrological-predictions.webp';
+import TarotCardsDisplay from '../assets/images/services/tarot-cards-display.webp';
+import GlowingHands from '../assets/images/services/glowing-healing-hands.webp';
+import TarotSpread from '../assets/images/services/tarot-spread.webp';
+import AmethystAltar from '../assets/images/services/amethyst-altar.webp';
 
 const services = [
   {
-    image: Service1,
+    image: TarotReading,
     title: "Tarot Card Reading",
-    description: "Unlock the mysteries of your future with our comprehensive tarot card readings and spiritual guidance."
+    description: "Decode energies of past, present & future through divine cards",
+    price: "₹1299"
   },
   {
-    image: Service2,
+    image: AngelReading,
     title: "Angel Reading",
-    description: "Connect with your guardian angels and receive divine guidance for your life's journey."
+    description: "Receive divine messages & angelic guidance for your path",
+    price: "₹1299"
   },
   {
-    image:Service3,
+    image: CrystalHealing,
     title: "Crystal Healing",
-    description: "Experience the healing power of crystals to balance your energy and promote wellness."
+    description: "Rebalance chakras and cleanse aura with crystal energies",
+    price: "₹1299"
   },
   {
-    image: Service4,
+    image: VastuConsultation,
     title: "Vastu Consultation",
-    description: "Harmonize your living space with ancient principles for better energy flow and prosperity."
+    description: "Bring harmony to home/workspace with sacred geometry",
+    price: "₹1299"
   },
+  {
+    image: Numerology,
+    title: "Numerology",
+    description: "Understand life path through numbers and cosmic vibrations",
+    price: "₹1299"
+  },
+  {
+    image: AstrologicalPredictions,
+    title: "Astrological Predictions",
+    description: "Personalized birth chart predictions for life guidance",
+    price: "₹1299"
+  },
+  {
+    image: TarotCardsDisplay,
+    title: "Signature Analysis",
+    description: "Reading of signature to uncover patterns and personality",
+    price: "₹1299"
+  },
+  {
+    image: GlowingHands,
+    title: "Kundli Matching",
+    description: "Find compatibility for marriage & relationships",
+    price: "₹1299"
+  },
+  {
+    image: TarotSpread,
+    title: "Personalized Kundli Consultation",
+    description: "Decode birth chart for career, love, health insights",
+    price: "₹1299"
+  },
+  {
+    image: AmethystAltar,
+    title: "Black Magic Removal",
+    description: "Protection from negative energies and harmful influences",
+    price: "₹1299"
+  }
 ];
 
 export default function ServiceSlider() {
@@ -41,11 +87,10 @@ export default function ServiceSlider() {
           <CrownDecoration className="w-12 h-8 text-yellow-400" />
           <div className="flex justify-center mb-8"></div>
           <h2 className="text-4xl font-bold mb-4 font-britannic">
-            Our Services with Consultation
+            Consultation Services
           </h2>
           <p className="text-lg opacity-80 max-w-3xl mx-auto font-futura">
-            Explore a variety of consultations tailored for your spiritual
-            journey.
+            Transform your life with divine guidance from Dr. Pranjal D. Shharma. All services priced at ₹1299.
           </p>
         </div>
 
@@ -113,8 +158,8 @@ export default function ServiceSlider() {
               {services.map((service, index) => (
                 <SwiperSlide key={index}>
                   <div
-                    className="bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-md overflow-hidden backdrop-blur-sm 
-                              hover:from-yellow-400 hover:to-orange-500 transform hover:scale-105 transition-all duration-300 font-futura"
+                    className="bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-xl overflow-hidden backdrop-blur-sm 
+                              hover:from-purple-500/50 hover:to-pink-500/50 transform hover:scale-105 transition-all duration-300 font-futura shadow-xl border border-purple-500/20"
                   >
                     <div className="aspect-square overflow-hidden">
                       <img
@@ -124,15 +169,23 @@ export default function ServiceSlider() {
                       />
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-3">
-                        {service.title}
-                      </h3>
-                      <p className="text-sm opacity-80 mb-4">
+                      <div className="flex justify-between items-start mb-3">
+                        <h3 className="text-xl font-bold text-white">
+                          {service.title}
+                        </h3>
+                        <span className="text-lg font-bold text-purple-300">
+                          {service.price}
+                        </span>
+                      </div>
+                      <p className="text-sm opacity-80 mb-4 text-white">
                         {service.description}
                       </p>
-                      <button className="text-sm font-semibold hover:text-yellow-400 transition-colors">
-                        READ MORE
-                      </button>
+                      <a 
+                        href="/Consultation"
+                        className="inline-block w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center py-2 px-4 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-colors"
+                      >
+                        Book Now
+                      </a>
                     </div>
                   </div>
                 </SwiperSlide>

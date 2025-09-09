@@ -1,7 +1,16 @@
 import React, { useEffect } from "react";
-import background from "../assets/images/background.jpg";
+import background from "../assets/images/backgrounds/purple-gradient.webp";
+import BlackSalt from "../assets/images/crystals/black-salt.webp";
+import AmethystBracelet from "../assets/images/crystals/amethyst-bracelet.webp";
+import LapisLazuli from "../assets/images/crystals/lapis-lazuli.webp";
+import TigerEye from "../assets/images/crystals/tiger-eye-stone.webp";
+import Pyrite from "../assets/images/crystals/pyrite.webp";
+import Aquamarine from "../assets/images/crystals/aquamarine.webp";
+import Carnelian from "../assets/images/crystals/carnelian.webp";
+import BlueApatite from "../assets/images/crystals/blue-apatite.webp";
+import Garnet from "../assets/images/crystals/garnet.webp";
+import RedJasper from "../assets/images/crystals/red-jasper.webp";
 import Navbar from "../components/Navbar";
-import NewsLetter from "../components/NewsLetter";
 import FooterMenu from "../components/FooterMenu";
 import CrownDecoration from "../components/CrownDecoration";
 import "/fonts.css";
@@ -12,63 +21,78 @@ import AOS from "aos";
 import "aos/dist/aos.css"; // AOS styles
 
 const Shop = () => {
-  const Shop = [
+  const products = [
     {
-      title: "Dhoop & Black Salt – Nazar Removal Kit",
+      title: "Black Salt for Nazar Removal",
       description:
-        " Protect your aura and space from evil eye energy. Includes dhoop sticks and blessed black salt.",
-      image:
-        "https://images.unsplash.com/photo-1590779033100-9f60a05a013d?w=500&h=300&fit=crop",
-      price: "₹449",
+        "Protect yourself and your space from negativity with our specially prepared Black Salt. Chanted with sacred mantras over 1 lakh times by Dr. Pranjal D. Shharma, making it highly potent for energy cleansing.",
+      image: BlackSalt,
+      price: "₹799",
+      featured: true
     },
     {
-      title: "Amethyst Bracelet",
+      title: "Amethyst Crystal Bracelet",
       description:
-        "Promotes peace & intuition. Enhances spiritual clarity & calmness.",
-      image:
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=300&fit=crop",
-      price: "₹449",
+        "Peace & Intuition – Enhances spiritual clarity, promotes calmness and deepens meditation practice.",
+      image: AmethystBracelet,
+      price: "₹1299",
     },
     {
       title: "Lapis Lazuli Bracelet",
       description:
-        "Encourages truth & wisdom. Boosts self-expression & mental clarity.",
-      image:
-        "https://images.unsplash.com/photo-1596247865408-c5107e2b950?w=500&h=300&fit=crop",
-      price: "₹449",
+        "Truth & Wisdom – Boosts self-expression, mental clarity and authentic communication.",
+      image: LapisLazuli,
+      price: "₹1299",
     },
     {
-      title: "Tiger’s Eye Bracelet",
-      description: "Shields against negativity. Attracts confidence & courage.",
-      image:
-        "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&h=300&fit=crop",
-      price: "₹449",
+      title: "Tiger's Eye Bracelet",
+      description: 
+        "Protection & Confidence – Shields against negativity while attracting courage and personal power.",
+      image: TigerEye,
+      price: "₹1299",
     },
     {
-      title: "Pyrite Bracelet",
+      title: "Pyrite Crystal Bracelet",
       description:
-        "Manifests wealth & abundance. Energizes action & motivation.",
-      image:
-        "https://images.unsplash.com/photo-1571169766717-0b0d2c7a8080?w=500&h=300&fit=crop",
-      price: "₹449",
+        "Wealth & Manifestation – Energizes action, motivation and attracts abundance into your life.",
+      image: Pyrite,
+      price: "₹1299",
     },
     {
-      title: "Clear Quartz Bracelet",
+      title: "Aquamarine Bracelet",
       description:
-        "Master healer & amplifier. Balances energy & enhances focus.",
-      image:
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&h=300&fit=crop",
-      price: "₹449",
+        "Clear Communication – Master healer and amplifier that balances energy and enhances focus.",
+      image: Aquamarine,
+      price: "₹1299",
     },
     {
-      title: "Rose Quartz Bracelet",
+      title: "Carnelian Bracelet",
       description:
-        "Opens the heart to love. Heals emotional wounds & fosters compassion.",
-      image:
-        "https://images.unsplash.com/photo-1532968961962-8a0cb3a2d4f5?w=500&h=300&fit=crop",
-      price: "₹449",
+        "Creativity & Courage – Opens the heart to love, heals emotional wounds and fosters compassion.",
+      image: Carnelian,
+      price: "₹1299",
     },
-    
+    {
+      title: "Blue Apatite Bracelet", 
+      description:
+        "Motivation & Learning – Stimulates intellect and enhances learning abilities.",
+      image: BlueApatite,
+      price: "₹1299",
+    },
+    {
+      title: "Garnet Bracelet",
+      description:
+        "Passion & Energy – Revitalizes body and mind, brings passion and strength.",
+      image: Garnet,
+      price: "₹1299",
+    },
+    {
+      title: "Red Jasper Bracelet",
+      description:
+        "Grounding & Stability – Provides emotional stability and grounding energy.",
+      image: RedJasper,
+      price: "₹1299",
+    }
   ];
 
   // Initialize AOS when component mounts
@@ -95,10 +119,9 @@ const Shop = () => {
 
       {/* Header Section */}
       <div className="pt-20 pb-10 text-center" data-aos="fade-down">
-        <h1 className="text-5xl font-bold mb-4 font-britannic">Our Products</h1>
-        <p className="text-lg opacity-80 max-w-2xl mx-auto">
-          Get a Tarot Reading done to understand the Depth of the Situation and
-          Resolve it
+        <h1 className="text-5xl font-bold mb-4 font-britannic">Products/Shop</h1>
+        <p className="text-lg opacity-80 max-w-2xl mx-auto font-futura">
+          Spiritual products blessed with sacred mantras by Dr. Pranjal D. Shharma. Transform your space with divine energy and protection.
         </p>
       </div>
 
@@ -109,59 +132,58 @@ const Shop = () => {
             <CrownDecoration />
 
             <h2 className="text-4xl font-bold mb-4 font-britannic">
-              Spiritual Store
+              Spiritual Products
             </h2>
             <p
-              className="text-lg opacity-80 max-w-3xl mx-auto"
+              className="text-lg opacity-80 max-w-3xl mx-auto font-futura"
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              Custom combinations available. All crystals are 100% authentic,
-              cleansed, and energised before dispatch.
+              All crystals are 100% authentic, cleansed, and energised before dispatch. Custom combinations available for personalized healing.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Shop.map((course, index) => (
+            {products.map((product, index) => (
               <div
                 key={index}
-                className="bg-transparent overflow-hidden hover:transform hover:scale-105 transition-all duration-300 shadow-2xl backdrop-blur-sm"
-                style={{
-                  background: "transparent",
-                  border: "2px dotted rgba(255, 255, 255, 0.5)",
-                  padding: "2px",
-                }}
+                className={`bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-xl overflow-hidden backdrop-blur-sm hover:transform hover:scale-105 transition-all duration-300 shadow-2xl border ${product.featured ? 'border-yellow-400' : 'border-purple-500/20'} font-futura`}
                 data-aos="fade-up"
                 data-aos-delay={(index % 3) * 100} // Stagger in groups of 3
               >
+                {product.featured && (
+                  <div className="bg-yellow-400 text-black text-center py-1 font-bold text-sm">
+                    FEATURED PRODUCT
+                  </div>
+                )}
                 <div
                   className="h-48 overflow-hidden"
                   data-aos="zoom-in"
                   data-aos-delay={(index % 3) * 100 + 200}
                 >
                   <img
-                    src={course.image}
-                    alt={course.title}
+                    src={product.image}
+                    alt={product.title}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-3 text-white">
-                    {course.title}
+                  <h3 className="text-xl font-bold mb-3 text-white">
+                    {product.title}
                   </h3>
-                  <p className="text-sm opacity-80 mb-6 text-white">
-                    {course.description}
+                  <p className="text-sm opacity-80 mb-6 text-white leading-relaxed">
+                    {product.description}
                   </p>
                   <div
                     className="flex justify-between items-center"
                     data-aos="fade-up"
                     data-aos-delay={(index % 3) * 100 + 300}
                   >
-                    <span className="text-xl font-bold text-yellow-400">
-                      {course.price}
+                    <span className="text-xl font-bold text-purple-300">
+                      {product.price}
                     </span>
                     <button
-                      className="px-6 py-2 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full text-white font-semibold 
+                      className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-semibold 
                                      hover:shadow-xl transform hover:scale-105 transition-all"
                     >
                       Buy Now
@@ -174,8 +196,6 @@ const Shop = () => {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <NewsLetter />
       {/* Footer Menu */}
       <FooterMenu />
     </div>

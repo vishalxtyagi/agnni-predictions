@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import background from "../assets/images/background.jpg";
+import background from "../assets/images/backgrounds/purple-gradient.webp";
 import Navbar from "../components/Navbar";
 import NewsLetter from "../components/NewsLetter";
 import FooterMenu from "../components/FooterMenu";
@@ -23,7 +23,7 @@ const Courses = () => {
       title: "Angel Healing Certification",
       description:
         "Learn to invoke angelic guidance & become a certified angel healer. Connect with divine energy.",
-      image: "src/assets/images/service2.webp",
+      image: "src/assets/images/services/angel-reading.webp",
       price: "₹449",
     },
     {

@@ -63,7 +63,7 @@ export default function FooterMenu() {
 
             <div>
                 <div className="relative mb-6">
-                <h3 className="text-lg font-semibold text-white">Shop</h3>
+                <h3 className="text-lg font-semibold text-white">Products/Shop</h3>
                 <div 
                     className="absolute bottom-0 left-0 h-0.5 w-full"
                     style={{
@@ -73,33 +73,27 @@ export default function FooterMenu() {
                 </div>
                 <ul className="space-y-4">
                 <li>
-                    <a href="#" className="text-white/70 hover:text-orange-400 flex items-center">
-                    <Bookmark className="text-yellow-400 w-4 h-4 mr-2 fill-yellow-400" />
-                    Tarot Reading Course
+                    <a href="/Shop" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
+                    Black Salt for Nazar Removal
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="text-white/70 hover:text-orange-400 flex items-center">
-                    <Bookmark className="text-yellow-400 w-4 h-4 mr-2 fill-yellow-400" />
-                    Angel Healing Course
+                    <a href="/Shop" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
+                    Crystal Bracelets
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="text-white/70 hover:text-orange-400 flex items-center">
-                    <Bookmark className="text-yellow-400 w-4 h-4 mr-2 fill-yellow-400" />
-                    Vastu
+                    <a href="/Shop" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
+                    Amethyst Healing
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="text-white/70 hover:text-orange-400 flex items-center">
-                    <Bookmark className="text-yellow-400 w-4 h-4 mr-2 fill-yellow-400" />
-                    Crystal Healing
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="text-white/70 hover:text-orange-400 flex items-center">
-                    <Bookmark className="text-yellow-400 w-4 h-4 mr-2 fill-yellow-400" />
-                    Meditations
+                    <a href="/Shop" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
+                    Spiritual Products
                     </a>
                 </li>
                 </ul>
@@ -107,7 +101,7 @@ export default function FooterMenu() {
 
             <div>
                 <div className="relative mb-6">
-                <h3 className="text-lg font-semibold text-white">Menu</h3>
+                <h3 className="text-lg font-semibold text-white">Quick Links</h3>
                 <div 
                     className="absolute bottom-0 left-0 h-0.5 w-full"
                     style={{
@@ -117,39 +111,32 @@ export default function FooterMenu() {
                 </div>
                 <ul className="space-y-4">
                 <li>
-                    <a href="#" className="text-white/70 hover:text-orange-400 flex items-center">
-                    <Bookmark className="text-yellow-400 w-4 h-4 mr-2 fill-yellow-400" />
-
+                    <a href="/" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
                     Home
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="text-white/70 hover:text-orange-400 flex items-center">
-                    <Bookmark className="text-yellow-400 w-4 h-4 mr-2 fill-yellow-400" />
-                    Consultation
+                    <a href="/Consultation" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
+                    Consultation Services
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="text-white/70 hover:text-orange-400 flex items-center">
-                    <Bookmark className="text-yellow-400 w-4 h-4 mr-2 fill-yellow-400" />
-                    Shop
+                    <a href="/about" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
+                    About Agnni Predictions
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="text-white/70 hover:text-orange-400 flex items-center">
-                    <Bookmark className="text-yellow-400 w-4 h-4 mr-2 fill-yellow-400" />
-                    Consultation
+                    <a href="/Shop" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
+                    Products/Shop
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="text-white/70 hover:text-orange-400 flex items-center">
-                    <Bookmark className="text-yellow-400 w-4 h-4 mr-2 fill-yellow-400" />
-                    About Us
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="text-white/70 hover:text-orange-400 flex items-center">
-                    <Bookmark className="text-yellow-400 w-4 h-4 mr-2 fill-yellow-400" />
+                    <a href="/contact" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
                     Contact Us
                     </a>
                 </li>
@@ -158,7 +145,7 @@ export default function FooterMenu() {
 
             <div>
                 <div className="relative mb-6">
-                <h3 className="text-lg font-semibold text-white">Contact us</h3>
+                <h3 className="text-lg font-semibold text-white">Contact Us</h3>
                 <div 
                     className="absolute bottom-0 left-0 h-0.5 w-full"
                     style={{
@@ -166,22 +153,32 @@ export default function FooterMenu() {
                     }}
                 ></div>
                 </div>
-                <p className="text-white/70 mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at risus sit amet lectus
+                <p className="text-white/70 mb-4 text-sm leading-relaxed">
+                📍 B 507 Tulsi 1 Appartment, Near Versova Metro Station, Bon Bon lane, Seven Bungalows, Andheri west, Mumbai 400061
                 </p>
-                <a href="mailto:contact@example.com" className="text-orange-400 hover:underline mb-4 block">
-                Send an email
-                </a>
-                <div className="mt-6">
-                <h4 className="text-white font-semibold mb-2">India</h4>
-                <p className="text-white/70">tel: +91 00 00 00000</p>
+                <div className="space-y-2">
+                    <a href="tel:+919870111356" className="text-purple-300 hover:text-purple-200 block text-sm">
+                        📞 +91-9870111356
+                    </a>
+                    <a href="mailto:pranjal@agnni.co" className="text-purple-300 hover:text-purple-200 block text-sm">
+                        📧 pranjal@agnni.co
+                    </a>
+                    <a href="https://www.agnni.co" className="text-purple-300 hover:text-purple-200 block text-sm">
+                        🌐 www.agnni.co
+                    </a>
+                </div>
+                <div className="mt-4">
+                    <p className="text-white/60 text-sm">
+                        Monday – Saturday: 10:00 AM – 7:00 PM<br/>
+                        Wednesday: 4:00PM - 10:00 PM (Oberoi Mall, Goregaon)
+                    </p>
                 </div>
             </div>
             </div>
 
             <div className="text-center pt-8 border-t border-white/10">
             <p className="text-white/70 text-sm">
-                Copyright ©2022 Agnni Predictions | All Rights Reserved. | Design By - designerramesh.com
+                Copyright ©2024 Agnni Predictions | All Rights Reserved. | Developed by digitaxperts.co.in
             </p>
             </div>
         </div>

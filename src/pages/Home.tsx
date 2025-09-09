@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Star, Moon, Sun, Gem, ChevronLeft, ChevronRight } from "lucide-react";
-import background from "../assets/images/background.jpg";
-import Hero from "../assets/images/hero1.webp";
-import Hero2 from "../assets/images/hero2.webp";
-import Hand from "../assets/images/hand-dark.png";
-import Cards from "../assets/images/cards.png";
+import background from "../assets/images/backgrounds/purple-gradient.webp";
+import Hero from "../assets/images/backgrounds/tarot-altar.webp";
+import Hero2 from "../assets/images/backgrounds/amethyst-crystals.webp";
+import Hero3 from "../assets/images/backgrounds/astrology-zodiac.webp";
+import Hand from "../assets/images/misc/palmistry-hand.webp";
+import Cards from "../assets/images/misc/mystical-cards.webp";
 import Service from "../components/service";
 import ServiceSlider from "../components/ServiceSlider";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import TestimonialSlider from "../components/TestimonialSlider";
-import CourseSlider from "../components/CourseSlider";
-import NewsLetter from "../components/NewsLetter";
 import FooterMenu from "../components/FooterMenu";
-import cardimage from '../assets/images/33.webp';
-import cardimage2 from '../assets/images/46.webp';
+import cardimage from '../assets/images/services/tarot-cards-display.webp';
+import cardimage2 from '../assets/images/services/crystal-healing-session.webp';
+import fairyVideo from '../assets/videos/fairy.mp4';
 
 import '/fonts.css'
 // Import AOS library
@@ -28,6 +28,7 @@ const Home = () => {
   const [currentService, setCurrentService] = useState(0);
   const [currentCourse, setCurrentCourse] = useState(0);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [currentBanner, setCurrentBanner] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [formData, setFormData] = useState({
     name: "",
@@ -38,6 +39,30 @@ const Home = () => {
     gender: "",
     birthdate: "",
   });
+
+  const banners = [
+    {
+      image: Hero,
+      title: "Awaken the Divine Within",
+      subtitle: "Your gateway to cosmic healing, ancient wisdom, and spiritual transformation.",
+      cta: "Book a Consultation",
+      ctaLink: "/Consultation"
+    },
+    {
+      image: Hero2, 
+      title: "Crystal Healing & Energy Work",
+      subtitle: "Rebalance your chakras and cleanse your aura with powerful crystal energies.",
+      cta: "Explore Products",
+      ctaLink: "/Shop"
+    },
+    {
+      image: Hero3,
+      title: "Astrological Predictions & Guidance", 
+      subtitle: "Decode your birth chart for insights into career, love, health and destiny.",
+      cta: "Get Reading",
+      ctaLink: "/Consultation"
+    }
+  ];
 
 
   // Initialize AOS when component mounts
@@ -50,21 +75,44 @@ const Home = () => {
     });
   }, []);
 
+  // Banner rotation effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBanner((prev) => (prev + 1) % banners.length);
+    }, 5000); // Change banner every 5 seconds
+    return () => clearInterval(interval);
+  }, [banners.length]);
+
   const faqs = [
     {
-      question: "How does tarot reading work online?",
+      question: "What can Tarot Card Reading help me with?",
       answer:
-        "Our experienced readers connect with your energy through focused intention and years of practice. We use video calls to create a personal connection and provide accurate readings that resonate with your spiritual journey.",
+        "Tarot is a mirror to your subconscious. It helps you gain clarity in relationships, career, finances, and personal growth. With over three decades of guiding clients, including celebrities, I use Tarot to provide direction and uncover solutions you may not see yourself.",
     },
     {
-      question: "What can I expect from my first reading?",
+      question: "How is Numerology different from Astrology?",
       answer:
-        "Your first reading will begin with a brief consultation to understand your questions and concerns. We'll then perform the reading using our intuitive abilities and provide detailed explanations of each card's meaning and how it relates to your situation.",
+        "Astrology is the study of cosmic forces through your birth chart, while Numerology decodes the hidden power of numbers in your name and date of birth. Together, they reveal your destiny, strengths, challenges, and the right timings for important life events.",
     },
     {
-      question: "How can I trust Card Reading Help me?",
+      question: "Can Vastu really change my life?",
       answer:
-        "We have years of experience and hundreds of satisfied clients worldwide. All our readers are certified professionals with proven track records of accurate predictions and spiritual guidance that have transformed countless lives.",
+        "Yes. Vastu Shastra is about aligning your home and workspace with universal energies. When balanced correctly, your environment supports prosperity, harmony, and well-being. Many clients have experienced peace and success after simple yet powerful changes in their spaces.",
+    },
+    {
+      question: "How do you handle Black Magic or negative energy issues?",
+      answer:
+        "As a Tantracharya, I have mastered techniques of Tantra to neutralize dark energies and spiritual blockages. Through rituals, mantras, and spiritual empowerment, I help clients overcome black magic influences and restore balance to their lives.",
+    },
+    {
+      question: "What is Angel Healing and how does it work?",
+      answer:
+        "Angel Healing is a gentle yet powerful method where I channel angelic energies to heal emotional wounds, release fear, and bring peace. It connects you with your guardian angels, allowing divine light to flow into your life.",
+    },
+    {
+      question: "Who should consult Agnni Predictions?",
+      answer:
+        "Anyone seeking clarity, healing, or solutions—whether you're facing personal struggles, career blocks, relationship issues, or feeling spiritually stuck. I have guided over 10,000 people, from common individuals to Bollywood stars, to transform challenges into opportunities.",
     },
   ];
 
@@ -105,9 +153,29 @@ const Home = () => {
 
       {/* Floating Mystical Elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        {/* Flying Fairies */}
         <div className="absolute top-1/4 left-1/3 animate-float">
-          <div className="w-8 h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg opacity-60 shadow-2xl transform rotate-12"></div>
+          <div className="w-4 h-4 bg-gradient-to-br from-purple-300 to-pink-300 rounded-full opacity-70 shadow-xl">
+            <div className="absolute -top-1 -left-1 w-2 h-2 bg-white rounded-full opacity-60"></div>
+          </div>
         </div>
+        
+        {/* Floating Stars */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className={`absolute animate-float`}
+            style={{
+              top: `${Math.random() * 80 + 10}%`,
+              left: `${Math.random() * 80 + 10}%`,
+              animationDelay: `${i * 0.5}s`
+            }}
+          >
+            <Star className="w-4 h-4 text-purple-300 opacity-40" />
+          </div>
+        ))}
+
+        {/* Mystical Orbs */}
         <div className="absolute top-1/2 right-1/4 animate-float delay-1000">
           <div className="w-8 h-12 bg-gradient-to-br from-blue-400 to-purple-400 rounded-lg opacity-60 shadow-2xl transform -rotate-12"></div>
         </div>
@@ -140,12 +208,12 @@ const Home = () => {
       {/* Navigation */}
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero Section with Rotating Banners */}
       <section
         id="home"
-        className="pt-20 min-h-screen flex items-center relative text-white"
+        className="pt-20 min-h-screen flex items-center relative text-white transition-all duration-1000"
         style={{
-          backgroundImage: `url(${Hero})`,
+          backgroundImage: `url(${banners[currentBanner].image})`,
           backgroundSize: "cover",
           backgroundPosition: "center bottom",
         }}
@@ -157,6 +225,21 @@ const Home = () => {
         {/* Optional subtle left-to-right gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent pointer-events-none"></div>
 
+        {/* Banner Navigation Dots */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+          {banners.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentBanner(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                index === currentBanner 
+                  ? 'bg-purple-400 shadow-lg' 
+                  : 'bg-white/30 hover:bg-white/50'
+              }`}
+            />
+          ))}
+        </div>
+
         {/* Main content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           {/* Right-side text content (inverted) */}
@@ -165,39 +248,51 @@ const Home = () => {
           {/* Left-side text content */}
           <div className="relative order-1 md:order-2 h-[400px]">
             <h1
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-right md:text-left font-britannic"
+              className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-right md:text-left font-britannic transition-all duration-500"
               data-aos="fade-up"
               data-aos-delay="100"
+              key={`title-${currentBanner}`}
             >
-              Confused with{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                Life?
+              {banners[currentBanner].title.split(' ').slice(0, -2).join(' ')}{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                {banners[currentBanner].title.split(' ').slice(-2).join(' ')}
               </span>
             </h1>
-            <h2
-              className="text-3xl md:text-4xl mb-6 text-right md:text-left font-futura"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              Get a <span className="text-yellow-400">Tarot Reading</span> done.
-            </h2>
             <p
-              className="text-xl mb-8 opacity-90 leading-relaxed text-right md:text-left font-futura"
+              className="text-xl mb-8 opacity-90 leading-relaxed text-right md:text-left font-futura transition-all duration-500"
               data-aos="fade-up"
               data-aos-delay="300"
+              key={`subtitle-${currentBanner}`}
             >
-              Get a Tarot Reading done to understand the Depth of the Situation
-              and Resolve it.
+              {banners[currentBanner].subtitle}
             </p>
+            
+            {/* Key Highlights */}
+            <div className="mb-8 text-right md:text-left" data-aos="fade-up" data-aos-delay="350">
+              <div className="flex flex-wrap justify-end md:justify-start gap-4 text-sm font-futura">
+                <span className="bg-purple-500/30 px-3 py-1 rounded-full">30+ Years Experience</span>
+                <span className="bg-purple-500/30 px-3 py-1 rounded-full">10,000+ Lives Impacted</span>
+                <span className="bg-purple-500/30 px-3 py-1 rounded-full">Celebrity Clientele</span>
+              </div>
+            </div>
+
             <div
-              className="flex justify-end md:justify-start"
+              className="flex justify-end md:justify-start space-x-4"
               data-aos="fade-up"
               data-aos-delay="400"
             >
-              <button className="bg-gradient-to-r from-yellow-400 to-orange-500 px-8 py-4 rounded-full text-black font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center space-x-2 font-futura">
-                <span className="rotate-180 inline-block">→</span>
-                <span>Click to book an appointment</span>
-              </button>
+              <a 
+                href={banners[currentBanner].ctaLink}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 rounded-full text-white font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center space-x-2 font-futura"
+              >
+                <span>{banners[currentBanner].cta}</span>
+              </a>
+              <a 
+                href="/Shop"
+                className="border-2 border-white/30 px-8 py-4 rounded-full text-white font-bold text-lg hover:bg-white/10 transform hover:scale-105 transition-all font-futura"
+              >
+                Explore Products
+              </a>
             </div>
           </div>
         </div>
@@ -240,11 +335,14 @@ const Home = () => {
             className="text-xl leading-relaxed mb-8 opacity-90 font-futura"
             data-aos="fade-up"
           >
-            Agnni Predictions is a sacred space created by Dr. Pranjal D.
-            Sharma, where celestial guidance meets ancient wisdom. With over a
-            decade of experience in spiritual sciences, she blends divine
-            intuition with modern understanding to help individuals find
-            healing, clarity, and direction.
+            Agnni Predictions, founded by Dr. Pranjal D. Shharma, is a holistic spiritual destination dedicated to guiding individuals towards clarity, healing, and transformation. With over 30 years of experience in astrology, numerology, tarot, Vastu Shastra, tantra, and energy healing, Dr. Shharma has helped more than 10,000 people worldwide, including prominent names from Bollywood and Indian television.
+          </p>
+          <p
+            className="text-lg leading-relaxed mb-8 opacity-80 font-futura"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            At Agnni Predictions, we believe that spirituality is not just about rituals—it is about empowerment and balance. Every service is designed to bring harmony to your mind, body, spirit, and surroundings.
           </p>
           <button
             className="bg-gradient-to-r from-yellow-400 to-orange-500 px-8 py-3 rounded-full text-black font-semibold hover:shadow-xl transform hover:scale-105 transition-all font-futura"
@@ -265,18 +363,17 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <div>
               <h2 className="text-4xl font-bold mb-6 leading-tight font-britannic">
-                The Best feeling in the World is finally knowing you took a step
-                in the right direction.
+                A Step towards the future where everything that you never thought possible, is possible.
               </h2>
               <p className="text-xl mb-8 opacity-90 leading-relaxed font-futura">
-                Every spiritual journey begins with a single step of courage.
-                Whether you seek clarity, healing, or divine connection, our
-                guidance helps illuminate your path forward. Trust your
-                intuition - you're exactly where you need to be.
+                Through the sacred mirror of divine guidance, we reveal the unseen—guiding you toward clarity, transformation, and the magic already woven into your path. Experience profound breakthroughs as you discover new layers of your relationships, purpose, and boundless potential.
               </p>
-              <button className="font-futura bg-gradient-to-r from-yellow-400 to-orange-500 px-8 py-3 rounded-full text-black font-semibold hover:shadow-xl transform hover:scale-105 transition-all">
-                Book Appointment
-              </button>
+              <a 
+                href="/Consultation"
+                className="inline-block font-futura bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 rounded-full text-white font-semibold hover:shadow-xl transform hover:scale-105 transition-all"
+              >
+                Book Consultation
+              </a>
             </div>
             <div className="relative">
               <div className="bg-gradient-to-br from-purple-600/50 to-pink-600/50 p-4 rounded-2xl backdrop-blur-sm">
@@ -319,8 +416,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Courses Section */}
-      <CourseSlider />
 
       {/* FAQ Section */}
       <section className="py-8 bg-black/20 backdrop-blur-sm" data-aos="fade-up">
@@ -462,8 +557,6 @@ const Home = () => {
             </form>
           </div>
         </div>
-        {/* Newsletter Section */}
-        <NewsLetter />
         {/* Footer */}
         <FooterMenu />
       </section>

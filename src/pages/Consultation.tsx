@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import background from "../assets/images/background.jpg";
+import background from "../assets/images/backgrounds/purple-gradient.webp";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import NewsLetter from "../components/NewsLetter";
@@ -16,21 +16,21 @@ const Consultation = () => {
       title: "Tarot Card Reading",
       description:
         "Decode energies of your past, present & future. Insights for love, career, health & personal growth.",
-      image: "src/assets/images/2.webp",
+      image: "src/assets/images/services/tarot-reading.webp",
       price: "₹449",
     },
     {
       title: "Angel Reading",
       description:
         "Receive divine messages & angelic guidance to realign your life purpose and inner peace.",
-      image: "src/assets/images/service2.webp",
+      image: "src/assets/images/services/angel-reading.webp",
       price: "₹449",
     },
     {
       title: "Crystal Healing Session",
       description:
         "Rebalance chakras & cleanse your aura with intuitively chosen crystals for your energy field.",
-      image: "src/assets/images/service3.webp",
+      image: "src/assets/images/services/crystal-healing.webp",
       price: "₹449",
     },
     {

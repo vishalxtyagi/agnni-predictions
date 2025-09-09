@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Star, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from "../assets/images/agnni_logo.png";
+import logo from "../assets/images/logos/agnni-logo-main.webp";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,38 +19,31 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-8">
           <Link
             to="/"
-            className="text-white hover:text-yellow-400 transition-colors"
+            className="text-white hover:text-purple-300 transition-colors"
           >
             Home
           </Link>
           <Link
             to="/Consultation"
-            className="text-white hover:text-yellow-400 transition-colors"
+            className="text-white hover:text-purple-300 transition-colors"
           >
-            Consultation
+            Consultation Services
+          </Link>
+          <Link
+            to="/about"
+            className="text-white hover:text-purple-300 transition-colors"
+          >
+            About Agnni Predictions
           </Link>
           <Link
             to="/Shop"
-            className="text-white hover:text-yellow-400 transition-colors"
+            className="text-white hover:text-purple-300 transition-colors"
           >
-            Products
-          </Link>
-          <Link
-            to="/Courses"
-            className="text-white hover:text-yellow-400 transition-colors"
-          >
-            Courses
-          </Link>
-          
-          <Link
-            to="/about"
-            className="text-white hover:text-yellow-400 transition-colors"
-          >
-            About Us
+            Products/Shop
           </Link>
           <Link
             to="/contact"
-            className="text-white hover:text-yellow-400 transition-colors"
+            className="text-white hover:text-purple-300 transition-colors"
           >
             Contact Us
           </Link>
@@ -72,45 +65,33 @@ const Navbar = () => {
       </div>
       {mobileMenuOpen && (
         <div className="md:hidden mt-16 pb-4 space-y-4 bg-black/50 rounded-lg px-4 absolute w-full left-0">
-          <Link to="/" className="block text-white hover:text-yellow-400 py-2">
+          <Link to="/" className="block text-white hover:text-purple-300 py-2">
             Home
           </Link>
           <Link
             to="/Consultation"
-            className="block text-white hover:text-yellow-400 py-2"
+            className="block text-white hover:text-purple-300 py-2"
           >
-            Consultation
-          </Link>
-          <Link
-            to="/Shop"
-            className="block text-white hover:text-yellow-400 py-2"
-          >
-            Shop
-          </Link>
-          <Link
-            to="/guidance"
-            className="block text-white hover:text-yellow-400 py-2"
-          >
-            Guidance
+            Consultation Services
           </Link>
           <Link
             to="/about"
-            className="block text-white hover:text-yellow-400 py-2"
+            className="block text-white hover:text-purple-300 py-2"
           >
-            About Us
+            About Agnni Predictions
+          </Link>
+          <Link
+            to="/Shop"
+            className="block text-white hover:text-purple-300 py-2"
+          >
+            Products/Shop
           </Link>
           <Link
             to="/contact"
-            className="block text-white hover:text-yellow-400 py-2"
+            className="block text-white hover:text-purple-300 py-2"
           >
             Contact Us
           </Link>
-          {/* <Link
-            to="/contact"
-            className="block bg-gradient-to-r from-yellow-400 to-orange-500 px-6 py-2 rounded-full font-semibold text-black hover:shadow-xl transform hover:scale-105 transition-all text-center"
-          >
-            Book a Consultation
-          </Link> */}
         </div>
       )}
     </nav>

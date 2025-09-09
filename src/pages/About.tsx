@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import background from "../assets/images/background.jpg";
+import background from "../assets/images/backgrounds/purple-gradient.webp";
 import { Trophy, Phone, MessageCircle, Lock } from "lucide-react";
 import Navbar from "../components/Navbar";
-import NewsLetter from "../components/NewsLetter";
 import FooterMenu from "../components/FooterMenu";
 import CrownDecoration from "../components/CrownDecoration";
 import "/fonts.css";
@@ -12,27 +11,27 @@ import AOS from "aos";
 import "aos/dist/aos.css"; // AOS styles
 
 const About = () => {
-  const whyMeCards = [
+  const whyChooseUs = [
     {
-      icon: <Trophy className="w-14 h-14 text-white-500" />,
-      title: "Certified Expertise",
+      icon: <Trophy className="w-14 h-14 text-purple-300" />,
+      title: "Divine Guidance with Depth",
       description:
-        "PhD in Tarot, Numerology & Tantra with 30+ years of spiritual leadership",
+        "Blending ancient wisdom with modern challenges for authentic spiritual solutions",
     },
     {
-      icon: <Phone className="w-14 h-14 text-white-500" />,
-      title: "Global Reach",
-      description: "Trusted by clients across India, UAE, UK & USA",
+      icon: <Phone className="w-14 h-14 text-purple-300" />,
+      title: "Trusted Experience",
+      description: "3 decades of consultations, 2 PhDs, and global clientele including celebrities",
     },
     {
-      icon: <MessageCircle className="w-14 h-14 text-white-500" />,
-      title: "Holistic Approach",
-      description: "Blending divine intuition with modern understanding",
+      icon: <MessageCircle className="w-14 h-14 text-purple-300" />,
+      title: "Holistic Solutions",
+      description: "From Tarot to Tantra, Angel Healing to Vastu - complete spiritual transformation",
     },
     {
-      icon: <Lock className="w-14 h-14 text-white-500" />,
-      title: "Transformative Results",
-      description: "10,000+ clients including film & TV celebrities",
+      icon: <Lock className="w-14 h-14 text-purple-300" />,
+      title: "Mantra-Infused Products",
+      description: "Limited-edition Black Salt, Dhoop, and crystals blessed with sacred chants",
     },
   ];
 
@@ -74,21 +73,26 @@ const About = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div data-aos="fade-right">
               <h2 className="text-4xl font-bold mb-6 font-britannic">
-                Dr. Pranjal D. Sharma
+                Dr. Pranjal D. Shharma
               </h2>
-              <p className="text-lg mb-8 opacity-90 leading-relaxed font-futura">
-                Agnni Predictions is founded by Dr. Pranjal D. Sharma, a
-                certified Tarot & Angel Reader, Crystal Healer, and Vastu
-                Consultant. With over a decade of experience in spiritual
-                sciences, she blends divine intuition with modern understanding
-                to help individuals find healing, clarity, and direction.
+              <p className="text-lg mb-6 opacity-90 leading-relaxed font-futura">
+                Agnni Predictions, founded by Dr. Pranjal D. Shharma, is a holistic spiritual destination dedicated to guiding individuals towards clarity, healing, and transformation. With over 30 years of experience in astrology, numerology, tarot, Vastu Shastra, tantra, and energy healing, Dr. Shharma has helped more than 10,000 people worldwide, including prominent names from Bollywood and Indian television.
               </p>
-              <p className="text-lg mb-8 opacity-90 leading-relaxed font-futura">
-                With deep-rooted belief in connecting with higher energies for
-                spiritual growth, Dr. Sharma focuses on holistic well-being of
-                mind, body & soul through personal consultations, workshops, and
-                mystical products.
+              <p className="text-lg mb-6 opacity-90 leading-relaxed font-futura">
+                At Agnni Predictions, we believe that spirituality is not just about rituals—it is about empowerment and balance. Every service, whether it is Tarot Reading, Kundli Analysis, Numerology, Angel Healing, Crystal Therapy, Vastu Consultation, or Black Magic Removal, is designed to bring harmony to your mind, body, spirit, and surroundings.
               </p>
+              <div className="bg-purple-600/30 p-6 rounded-lg mb-6 border-l-4 border-purple-400">
+                <h3 className="text-xl font-bold mb-3 text-purple-200 font-britannic">✨ Our Mission</h3>
+                <p className="text-base opacity-90 font-futura">
+                  To uplift and empower humanity by offering authentic spiritual guidance, healing practices, and cosmic wisdom that help individuals navigate life's challenges with confidence and positivity.
+                </p>
+              </div>
+              <div className="bg-pink-600/30 p-6 rounded-lg mb-8 border-l-4 border-pink-400">
+                <h3 className="text-xl font-bold mb-3 text-pink-200 font-britannic">🌿 Our Vision</h3>
+                <p className="text-base opacity-90 font-futura">
+                  Dr. Shharma envisions a spiritually awakened world where individuals live in alignment with universal energies. Soon, Agnni Predictions will launch a Gurukul, a spiritual school dedicated to nurturing the next generation of healers and spiritual leaders.
+                </p>
+              </div>
               <div className="flex gap-16 h-[100px]">
                 <div
                   className="flex py-3 gap-x-2 h-full items-center"
@@ -142,25 +146,27 @@ const About = () => {
             <h2 className="text-4xl font-bold mb-4 font-britannic">
               Why Choose Agnni Predictions
             </h2>
-            <p className="text-lg opacity-80 max-w-2xl mx-auto font-futura">
-              "My mission is to uplift human consciousness through divine
-              practices."
+            <p className="text-lg opacity-80 max-w-4xl mx-auto font-futura">
+              "My mission is to uplift human consciousness through divine practices." – Dr. Pranjal D. Shharma
+            </p>
+            <p className="text-base opacity-70 max-w-4xl mx-auto font-futura mt-4">
+              At Agnni Predictions, every consultation, healing, and remedy is rooted in authenticity, compassion, and decades of spiritual mastery. When you choose Agnni Predictions, you choose a path of light, healing, and empowerment guided by divine practices.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
-            {whyMeCards.map((card, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {whyChooseUs.map((card, index) => (
               <div
                 key={index}
-                className="flex flex-col justify-center items-center h-[300px] bg-purple-600 p-8 rounded-md backdrop-blur-sm hover:transform hover:scale-105 transition-all duration-300"
+                className="flex flex-col justify-center items-center h-[320px] bg-gradient-to-br from-purple-600/30 to-pink-600/30 p-8 rounded-xl backdrop-blur-sm hover:transform hover:scale-105 transition-all duration-300 border border-purple-500/20 shadow-xl"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
-                <div className="text-8xl mb-4">{card.icon}</div>
-                <h3 className="text-xl font-bold mb-3 font-britannic">
+                <div className="text-6xl mb-6">{card.icon}</div>
+                <h3 className="text-lg font-bold mb-4 text-center font-britannic">
                   {card.title}
                 </h3>
-                <p className="text-sm opacity-80 font-futura">
+                <p className="text-sm opacity-80 font-futura text-center leading-relaxed">
                   {card.description}
                 </p>
               </div>
@@ -169,8 +175,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* NewsLetter Section */}
-      <NewsLetter />
 
       {/* Footer Section */}
       <FooterMenu />

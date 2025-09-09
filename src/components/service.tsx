@@ -4,10 +4,10 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import serviceCard1 from '../assets/images/service1.webp';
-import serviceCard2 from '../assets/images/service2.webp';
-import serviceCard3 from '../assets/images/service3.webp';
-import serviceCard4 from '../assets/images/service4.webp';
+import serviceCard1 from '../assets/images/services/tarot-reading.webp';
+import serviceCard2 from '../assets/images/services/angel-reading.webp';
+import serviceCard3 from '../assets/images/services/crystal-healing.webp';
+import serviceCard4 from '../assets/images/services/vastu-consultation.webp';
 // import serviceCard5 from '../assets/service5.webp';
 
 const services = [

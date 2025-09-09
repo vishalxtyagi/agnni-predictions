@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import background from "../assets/images/background.jpg";
+import background from "../assets/images/backgrounds/purple-gradient.webp";
 import { Phone, MapPin, Mail, Share2 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import NewsLetter from "../components/NewsLetter";
