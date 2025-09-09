@@ -116,16 +116,21 @@ const CrystalModal: React.FC<CrystalModalProps> = ({ crystal, isOpen, onClose, o
   return (
     <div
       ref={backdropRef}
-      className="fixed inset-0 z-[70] bg-black/80 backdrop-blur-md flex items-center justify-center p-6"
+      className="fixed inset-0 z-[70] bg-black/90 backdrop-blur-lg flex items-center justify-center p-4"
       style={{
-        backgroundImage: "url('/src/assets/images/backgrounds/particle-overlay.webp')",
+        backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/src/assets/images/backgrounds/particle-overlay.webp')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        width: '100vw',
+        height: '100vh',
+        top: 0,
+        left: 0,
+        position: 'fixed'
       }}
     >
       <div
         ref={modalRef}
-        className="max-w-4xl w-full bg-gradient-to-br from-luxury-900 to-divine-900 rounded-3xl border border-luxury-500/30 overflow-hidden shadow-divine"
+        className="max-w-6xl w-full max-h-[90vh] bg-gradient-to-br from-luxury-900 to-divine-900 rounded-3xl border border-luxury-500/30 overflow-hidden shadow-divine mx-4"
         role="dialog"
         aria-modal="true"
         aria-labelledby="crystal-modal-title"
@@ -144,9 +149,10 @@ const CrystalModal: React.FC<CrystalModalProps> = ({ crystal, isOpen, onClose, o
             <div className="relative">
               <img
                 src={crystal.image}
-                alt={crystal.name}
+                alt={`${crystal.name} crystal - ${crystal.subtitle}. ${crystal.description.slice(0, 100)}...`}
                 className="w-full h-96 object-cover rounded-2xl shadow-luxury"
                 style={{ filter: 'contrast(1.1) saturate(1.3)' }}
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-2xl" />
               <div className="absolute top-4 left-4 bg-gold-500 text-black px-3 py-1 rounded-full text-sm font-bold">
@@ -359,16 +365,20 @@ const InteractiveCrystalGallery: React.FC = () => {
   }, [filter]);
 
   return (
-    <section className="py-20 section-morph animate-on-scroll" data-bg-type="products">
+    <section 
+      className="py-20 section-morph animate-on-scroll" 
+      data-bg-type="products"
+      aria-labelledby="crystal-collection-heading"
+    >
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-4">
-            <Sparkles className="w-6 h-6 text-luxury-400 mr-2 animate-pulse" />
-            <h2 className="text-4xl font-bold font-cinzel text-luxury-300">
+            <Sparkles className="w-6 h-6 text-luxury-400 mr-2 animate-pulse" aria-hidden="true" />
+            <h2 id="crystal-collection-heading" className="text-4xl font-bold font-cinzel text-luxury-300">
               Sacred Crystal Collection
             </h2>
-            <Sparkles className="w-6 h-6 text-luxury-400 ml-2 animate-pulse" />
+            <Sparkles className="w-6 h-6 text-luxury-400 ml-2 animate-pulse" aria-hidden="true" />
           </div>
           <p className="text-white/80 text-lg font-inter max-w-3xl mx-auto">
             Each crystal is 100% authentic, cleansed, and energized before dispatch. 
@@ -399,10 +409,19 @@ const InteractiveCrystalGallery: React.FC = () => {
           className="grid lg:grid-cols-3 md:grid-cols-2 gap-8"
         >
           {filteredCrystals.map((crystal, index) => (
-            <div
+            <article
               key={crystal.id}
               className="crystal-card group relative bg-gradient-to-br from-luxury-900/40 to-divine-900/40 rounded-3xl border border-luxury-500/30 overflow-hidden backdrop-blur-md hover:shadow-divine transition-all duration-500 transform hover:scale-105 cursor-pointer"
               onClick={() => openModal(crystal)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  openModal(crystal);
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-label={`View details for ${crystal.name} - ${crystal.subtitle}. Price: ${crystal.price}`}
               style={{ opacity: 0 }}
             >
               {/* Premium glow effect */}
@@ -412,9 +431,10 @@ const InteractiveCrystalGallery: React.FC = () => {
               <div className="relative aspect-square overflow-hidden">
                 <img
                   src={crystal.image}
-                  alt={crystal.name}
+                  alt={`${crystal.name} crystal bracelet - beautiful ${crystal.properties.join(', ')} stone for ${crystal.energy.toLowerCase()}`}
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                   style={{ filter: 'contrast(1.1) saturate(1.2)' }}
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                 
@@ -458,7 +478,7 @@ const InteractiveCrystalGallery: React.FC = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 

@@ -5,12 +5,12 @@ import Guidance from './pages/Guidance';
 import Consultation from './pages/Consultation';
 import Contact from './pages/Contact';
 import Shop from './pages/Shop';
-import Home from './pages/Home';
 import PremiumHome from './pages/PremiumHome';
 import Courses from './pages/Courses';
 import CursorEffects from './components/CursorEffects';
 import LoadingScreen from './components/LoadingScreen';
 import SmoothScrollProvider from './components/SmoothScrollProvider';
+import { CartProvider } from './context/CartContext';
 import { initializePerformanceOptimizations } from './utils/performanceOptimizer';
 import "aos/dist/aos.css";
 
@@ -31,22 +31,23 @@ const App = () => {
       {isLoading ? (
         <LoadingScreen onLoadingComplete={handleLoadingComplete} />
       ) : (
-        <SmoothScrollProvider>
-          <Router>
-            <CursorEffects />
-            <Routes>
-              {/* Use PremiumHome for the main route to showcase transformation */}
-              <Route path="/" element={<PremiumHome />} />
-              <Route path="/home-original" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/guidance" element={<Guidance />} />
-              <Route path="/Consultation" element={<Consultation />} />
-              <Route path="/Courses" element={<Courses />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/Shop" element={<Shop />} />
-            </Routes>
-          </Router>
-        </SmoothScrollProvider>
+        <CartProvider>
+          <SmoothScrollProvider>
+            <Router>
+              <CursorEffects />
+              <Routes>
+                {/* Use PremiumHome for the main route to showcase transformation */}
+                <Route path="/" element={<PremiumHome />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/guidance" element={<Guidance />} />
+                <Route path="/Consultation" element={<Consultation />} />
+                <Route path="/Courses" element={<Courses />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/Shop" element={<Shop />} />
+              </Routes>
+            </Router>
+          </SmoothScrollProvider>
+        </CartProvider>
       )}
     </>
   );

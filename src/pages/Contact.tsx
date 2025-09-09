@@ -3,7 +3,12 @@ import { Phone, MapPin, Mail, Clock } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CrownDecoration from "../components/CrownDecoration";
+import MagicalEffects from "../components/MagicalEffects";
 import "/fonts.css";
+
+// Import background assets
+import astrologyZodiacBg from "../assets/images/backgrounds/astrology-zodiac.webp";
+import bokehGlitterBg from "../assets/images/backgrounds/bokeh-glitter.webp";
 
 const Contact = () => {
   useEffect(() => {
@@ -11,11 +16,14 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="bg-divine-900 text-white font-inter overflow-hidden">
+    <div className="bg-divine-900 text-white font-inter overflow-hidden relative">
+      {/* Magical Effects Layer */}
+      <MagicalEffects page="contact" intensity="low" enableScrollTrigger={true} />
+      
       <Navbar />
       <div className="relative pt-32 pb-20 bg-gradient-to-b from-luxury-900 to-divine-900">
-        <div className="absolute inset-0 opacity-10">
-          <img src="/src/assets/images/backgrounds/astrology-zodiac.webp" alt="" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 opacity-15">
+          <img src={astrologyZodiacBg} alt="" className="w-full h-full object-cover" />
         </div>
         <div className="relative text-center max-w-4xl mx-auto px-6">
           <CrownDecoration />
@@ -28,7 +36,15 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="py-24 bg-divine-900">
+      <div 
+        className="py-24 bg-divine-900 relative"
+        style={{
+          backgroundImage: `linear-gradient(rgba(88, 28, 135, 0.85), rgba(88, 28, 135, 0.85)), url(${bokehGlitterBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Contact Form */}

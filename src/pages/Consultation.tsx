@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CrownDecoration from "../components/CrownDecoration";
+import MagicalEffects from "../components/MagicalEffects";
 import "/fonts.css";
 
 // Import service assets
@@ -18,6 +19,7 @@ import kundliMatchingImg from "../assets/images/services/tarot-spread.webp";
 import blackMagicRemovalImg from "../assets/images/services/crystal-healing.webp";
 
 import horoscopeVideo from "../assets/videos/horoscope.mp4";
+import purpleGradientBg from "../assets/images/backgrounds/purple-gradient.webp";
 
 const consultationServices = [
   { id: 'tarot', title: "Tarot Card Reading", description: "Decode energies of past, present & future to gain insights for love, career, and personal transformation.", image: tarotReadingImg },
@@ -39,11 +41,14 @@ const Consultation = () => {
   }, []);
 
   return (
-    <div className="bg-divine-900 text-white font-inter overflow-hidden">
+    <div className="bg-divine-900 text-white font-inter overflow-hidden relative">
+      {/* Magical Effects Layer */}
+      <MagicalEffects page="consultation" intensity="medium" enableScrollTrigger={true} />
+      
       <Navbar />
       <div className="relative pt-32 pb-20 bg-gradient-to-b from-luxury-900 to-divine-900">
-        <div className="absolute inset-0 opacity-10">
-          <img src="/src/assets/images/backgrounds/purple-gradient.webp" alt="" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 opacity-15">
+          <img src={purpleGradientBg} alt="" className="w-full h-full object-cover" />
         </div>
         <div className="relative text-center max-w-4xl mx-auto px-6">
           <CrownDecoration />
@@ -58,53 +63,112 @@ const Consultation = () => {
 
       <div className="py-24 bg-divine-900">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Sticky Service Display */}
-            <div className="sticky top-28">
+          {/* Desktop Layout */}
+          <div className="hidden lg:block">
+            <div className="grid lg:grid-cols-2 gap-16 items-start">
+              {/* Sticky Service Display */}
+              <div className="sticky top-28 max-h-[calc(100vh-8rem)]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeService.id}
+                    className="rounded-3xl overflow-hidden border border-luxury-500/30 shadow-divine bg-gradient-to-br from-luxury-900 to-divine-900"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <div className="relative h-80">
+                      {activeService.video ? (
+                        <video src={activeService.video} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                      ) : (
+                        <img src={activeService.image} alt={activeService.title} className="w-full h-full object-cover" />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent" />
+                      <h2 className="absolute bottom-6 left-6 text-3xl font-bold font-cinzel text-white">
+                        {activeService.title}
+                      </h2>
+                    </div>
+                    <div className="p-8 space-y-6">
+                      <p className="text-white/80 text-lg leading-relaxed min-h-[6rem]">
+                        {activeService.description}
+                      </p>
+                      <div className="flex items-center text-gold-400 font-bold text-2xl">
+                        <span>₹1,299</span>
+                        <span className="text-white/60 text-sm ml-2">/ session</span>
+                      </div>
+                      <button className="w-full bg-gradient-to-r from-gold-500 via-gold-600 to-gold-500 hover:from-gold-400 hover:via-gold-500 hover:to-gold-400 text-black font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-gold hover:shadow-gold-lg font-inter cta-button interactive text-lg">
+                        Book This Session
+                      </button>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Service List */}
+              <div className="space-y-4">
+                {consultationServices.map(service => (
+                  <ServiceListItem
+                    key={service.id}
+                    service={service}
+                    isActive={activeService.id === service.id}
+                    onHover={() => setActiveService(service)}
+                    onSelect={() => setActiveService(service)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile/Tablet Layout */}
+          <div className="lg:hidden">
+            {/* Active Service Display - Fixed at Top */}
+            <div className="sticky top-20 z-30 mb-8 bg-divine-900/95 backdrop-blur-md border-b border-luxury-500/20 pb-4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeService.id}
-                  className="rounded-3xl overflow-hidden border border-luxury-500/30 shadow-divine bg-gradient-to-br from-luxury-900 to-divine-900"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="rounded-2xl overflow-hidden border border-luxury-500/30 shadow-divine bg-gradient-to-br from-luxury-900 to-divine-900"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="relative h-80">
+                  <div className="relative h-48 sm:h-56">
                     {activeService.video ? (
                       <video src={activeService.video} autoPlay loop muted playsInline className="w-full h-full object-cover" />
                     ) : (
                       <img src={activeService.image} alt={activeService.title} className="w-full h-full object-cover" />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent" />
-                    <h2 className="absolute bottom-6 left-6 text-3xl font-bold font-cinzel text-white">
+                    <h2 className="absolute bottom-4 left-4 text-2xl sm:text-3xl font-bold font-cinzel text-white">
                       {activeService.title}
                     </h2>
                   </div>
-                  <div className="p-8 space-y-6">
-                    <p className="text-white/80 text-lg leading-relaxed h-24">
+                  <div className="p-6 space-y-4">
+                    <p className="text-white/80 leading-relaxed text-sm sm:text-base">
                       {activeService.description}
                     </p>
-                    <div className="flex items-center text-gold-400 font-bold text-2xl">
-                      <span>₹1,299</span>
-                      <span className="text-white/60 text-sm ml-2">/ session</span>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center text-gold-400 font-bold text-xl sm:text-2xl">
+                        <span>₹1,299</span>
+                        <span className="text-white/60 text-xs sm:text-sm ml-2">/ session</span>
+                      </div>
+                      <button className="bg-gradient-to-r from-gold-500 via-gold-600 to-gold-500 hover:from-gold-400 hover:via-gold-500 hover:to-gold-400 text-black font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-gold hover:shadow-gold-lg font-inter cta-button interactive">
+                        Book Session
+                      </button>
                     </div>
-                    <button className="w-full bg-gradient-to-r from-gold-500 via-gold-600 to-gold-500 hover:from-gold-400 hover:via-gold-500 hover:to-gold-400 text-black font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-gold hover:shadow-gold-lg font-inter cta-button interactive text-lg">
-                      Book This Session
-                    </button>
                   </div>
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            {/* Service List */}
-            <div className="space-y-6">
+            {/* Service Selection Grid */}
+            <div className="grid gap-4 sm:grid-cols-2">
               {consultationServices.map(service => (
-                <ServiceListItem
+                <MobileServiceCard
                   key={service.id}
                   service={service}
                   isActive={activeService.id === service.id}
-                  onHover={() => setActiveService(service)}
+                  onSelect={() => setActiveService(service)}
                 />
               ))}
             </div>
@@ -117,26 +181,111 @@ const Consultation = () => {
   );
 };
 
-const ServiceListItem = ({ service, isActive, onHover }) => {
+const ServiceListItem = ({ service, isActive, onHover, onSelect }) => {
   return (
     <motion.div
       onMouseEnter={onHover}
-      className={`p-6 rounded-2xl border-2 transition-all duration-300 cursor-pointer ${isActive ? 'border-purple-400 bg-luxury-900/50 shadow-lg' : 'border-luxury-700/50 bg-transparent hover:bg-luxury-900/30'}`}
+      onClick={onSelect}
+      className={`p-6 rounded-2xl border-2 transition-all duration-300 cursor-pointer interactive ${
+        isActive 
+          ? 'border-gold-400 bg-gradient-to-r from-luxury-900/70 to-divine-900/70 shadow-divine' 
+          : 'border-luxury-700/50 bg-gradient-to-r from-luxury-900/30 to-divine-900/30 hover:border-luxury-500/70 hover:from-luxury-900/50 hover:to-divine-900/50'
+      }`}
       layout
       transition={{ duration: 0.3, ease: "easeInOut" }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
     >
-      <div className="flex items-center space-x-5">
-        <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-purple-400/20' : 'bg-luxury-700/50'}`}>
-          <CheckCircle className={`w-6 h-6 transition-colors duration-300 ${isActive ? 'text-purple-300' : 'text-white/60'}`} />
+      <div className="flex items-start space-x-5">
+        <div className="flex-shrink-0">
+          <img 
+            src={service.image} 
+            alt={service.title}
+            className="w-16 h-16 rounded-xl object-cover border-2 border-luxury-500/30"
+          />
         </div>
-        <div>
-          <h3 className={`text-xl font-bold font-cinzel transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/80'}`}>
+        <div className="flex-1">
+          <h3 className={`text-xl font-bold font-cinzel transition-colors duration-300 mb-2 ${
+            isActive ? 'text-gold-300' : 'text-white/90'
+          }`}>
             {service.title}
           </h3>
-          <p className={`text-sm transition-colors duration-300 ${isActive ? 'text-white/70' : 'text-white/50'}`}>
-            {isActive ? service.description : `${service.description.substring(0, 50)}...`}
+          <p className={`text-sm leading-relaxed transition-colors duration-300 ${
+            isActive ? 'text-white/80' : 'text-white/60'
+          }`}>
+            {service.description.substring(0, 100)}...
           </p>
+          <div className="mt-3 flex items-center">
+            <span className="text-gold-400 font-bold">₹1,299</span>
+            <span className="text-white/50 text-xs ml-2">/ session</span>
+          </div>
         </div>
+        <div className={`flex-shrink-0 w-3 h-3 rounded-full transition-all duration-300 ${
+          isActive ? 'bg-gold-400 shadow-gold' : 'bg-white/30'
+        }`} />
+      </div>
+    </motion.div>
+  );
+};
+
+const MobileServiceCard = ({ service, isActive, onSelect }) => {
+  return (
+    <motion.div
+      onClick={onSelect}
+      className={`p-4 rounded-2xl border-2 transition-all duration-300 cursor-pointer interactive ${
+        isActive 
+          ? 'border-gold-400 bg-gradient-to-br from-luxury-900/80 to-divine-900/80 shadow-divine' 
+          : 'border-luxury-700/50 bg-gradient-to-br from-luxury-900/40 to-divine-900/40 hover:border-luxury-500/70'
+      }`}
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="relative h-32 rounded-xl overflow-hidden mb-3">
+        {service.video ? (
+          <video 
+            src={service.video} 
+            muted 
+            playsInline 
+            className={`w-full h-full object-cover transition-all duration-300 ${
+              isActive ? 'scale-110' : 'scale-100'
+            }`} 
+          />
+        ) : (
+          <img 
+            src={service.image} 
+            alt={service.title}
+            className={`w-full h-full object-cover transition-all duration-300 ${
+              isActive ? 'scale-110' : 'scale-100'
+            }`}
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        {isActive && (
+          <div className="absolute top-2 right-2 w-3 h-3 bg-gold-400 rounded-full shadow-gold animate-pulse" />
+        )}
+      </div>
+      
+      <h3 className={`font-bold font-cinzel text-lg mb-2 transition-colors duration-300 ${
+        isActive ? 'text-gold-300' : 'text-white/90'
+      }`}>
+        {service.title}
+      </h3>
+      
+      <p className={`text-xs leading-relaxed transition-colors duration-300 line-clamp-2 ${
+        isActive ? 'text-white/80' : 'text-white/60'
+      }`}>
+        {service.description}
+      </p>
+      
+      <div className="mt-3 flex items-center justify-between">
+        <div>
+          <span className="text-gold-400 font-bold text-sm">₹1,299</span>
+          <span className="text-white/50 text-xs ml-1">/ session</span>
+        </div>
+        <CheckCircle className={`w-5 h-5 transition-all duration-300 ${
+          isActive ? 'text-gold-400' : 'text-white/40'
+        }`} />
       </div>
     </motion.div>
   );

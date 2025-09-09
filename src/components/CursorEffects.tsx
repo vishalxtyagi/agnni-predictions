@@ -1,6 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { gsap } from 'gsap';
 
+// Import magical effect images
+import magicalFairy from '../assets/effects/mystical-fairy.png';
+import magicalButterfly from '../assets/effects/magical-butterfly.png';
+import purpleEnergySwirl from '../assets/effects/purple-energy-swirl.png';
+import goldenMagicFeather from '../assets/effects/golden-magic-feather.png';
+
 interface Sparkle {
   id: number;
   x: number;
@@ -8,7 +14,8 @@ interface Sparkle {
   createdAt: number;
   size: number;
   color: string;
-  type: 'trail' | 'burst' | 'hover';
+  type: 'trail' | 'burst' | 'hover' | 'magical';
+  magicalType?: 'fairy' | 'butterfly' | 'energy' | 'feather';
 }
 
 interface CursorState {
@@ -68,6 +75,25 @@ const CursorEffects: React.FC = () => {
         };
 
         setSparkles(prev => [...prev, newSparkle]);
+      }
+
+      // Add magical effects occasionally
+      if (Math.random() > 0.95) {
+        const magicalTypes: ('fairy' | 'butterfly' | 'energy' | 'feather')[] = ['fairy', 'butterfly', 'energy', 'feather'];
+        const randomMagicalType = magicalTypes[Math.floor(Math.random() * magicalTypes.length)];
+        
+        const magicalSparkle: Sparkle = {
+          id: Date.now() + Math.random(),
+          x: e.clientX + (Math.random() - 0.5) * 30,
+          y: e.clientY + (Math.random() - 0.5) * 30,
+          createdAt: Date.now(),
+          size: Math.random() * 8 + 12, // Larger for magical effects
+          color: luxuryColors.mystic,
+          type: 'magical',
+          magicalType: randomMagicalType
+        };
+
+        setSparkles(prev => [...prev, magicalSparkle]);
       }
 
       // Enhanced sparkles around interactive elements
@@ -169,7 +195,7 @@ const CursorEffects: React.FC = () => {
       {/* Custom Cursor */}
       <div 
         ref={cursorRef}
-        className="fixed pointer-events-none z-[60] mix-blend-difference"
+        className="fixed pointer-events-none z-[90] mix-blend-difference"
         style={{
           left: cursorState.x,
           top: cursorState.y,
@@ -195,7 +221,7 @@ const CursorEffects: React.FC = () => {
       </div>
 
       {/* Premium Sparkles */}
-      <div className="fixed inset-0 pointer-events-none z-50">
+      <div className="fixed inset-0 pointer-events-none z-[85]">
         {sparkles.map(sparkle => (
           <div
             key={sparkle.id}
@@ -209,14 +235,32 @@ const CursorEffects: React.FC = () => {
               transform: 'translate(-50%, -50%)',
             }}
           >
-            <div
-              className="w-full h-full rounded-full animate-sparkle"
-              style={{
-                backgroundColor: sparkle.color,
-                boxShadow: `0 0 ${sparkle.size * 3}px ${sparkle.color}`,
-                animation: `sparkle-fade ${sparkle.type === 'burst' ? '1.2s' : '1s'} ease-out forwards`,
-              }}
-            />
+            {sparkle.type === 'magical' && sparkle.magicalType ? (
+              <div className="relative w-full h-full">
+                <img
+                  src={
+                    sparkle.magicalType === 'fairy' ? magicalFairy :
+                    sparkle.magicalType === 'butterfly' ? magicalButterfly :
+                    sparkle.magicalType === 'energy' ? purpleEnergySwirl :
+                    goldenMagicFeather
+                  }
+                  alt={`magical ${sparkle.magicalType}`}
+                  className="w-full h-full object-contain animate-sparkle-magical"
+                  style={{
+                    filter: `drop-shadow(0 0 ${sparkle.size}px ${sparkle.color})`,
+                  }}
+                />
+              </div>
+            ) : (
+              <div
+                className="w-full h-full rounded-full animate-sparkle"
+                style={{
+                  backgroundColor: sparkle.color,
+                  boxShadow: `0 0 ${sparkle.size * 3}px ${sparkle.color}`,
+                  animation: `sparkle-fade ${sparkle.type === 'burst' ? '1.2s' : '1s'} ease-out forwards`,
+                }}
+              />
+            )}
             {sparkle.type === 'hover' && (
               <div 
                 className="absolute inset-0 rounded-full animate-ping"

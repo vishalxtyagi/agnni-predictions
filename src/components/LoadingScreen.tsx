@@ -73,7 +73,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 z-[9999] bg-black overflow-hidden"
+      className="fixed inset-0 z-[100] bg-black overflow-hidden"
       style={{ opacity: 0 }}
     >
       {/* Full-screen Premium Video Loader */}

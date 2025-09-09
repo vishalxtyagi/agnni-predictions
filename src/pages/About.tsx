@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CrownDecoration from '../components/CrownDecoration';
+import MagicalEffects from '../components/MagicalEffects';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CountUp from 'react-countup';
@@ -11,6 +12,12 @@ import "/fonts.css";
 // Import assets
 import aboutPortrait from '../assets/images/misc/palmistry-hand.webp';
 import signatureBg from '../assets/images/backgrounds/tarot-altar.webp';
+import astrologyZodiacBg from '../assets/images/backgrounds/astrology-zodiac.webp';
+import particleOverlayBg from '../assets/images/backgrounds/particle-overlay.webp';
+import bokehGlitterBg from '../assets/images/backgrounds/bokeh-glitter.webp';
+
+// Import videos
+import horoscopeVideo from '../assets/videos/horoscope.mp4';
 
 const About = () => {
   useEffect(() => {
@@ -18,16 +25,19 @@ const About = () => {
   }, []);
 
   return (
-    <div className="bg-divine-900 text-white font-inter overflow-hidden">
+    <div className="bg-divine-900 text-white font-inter overflow-hidden relative">
+      {/* Magical Effects Layer */}
+      <MagicalEffects page="about" intensity="medium" enableScrollTrigger={true} />
+      
       <Navbar />
       <div className="relative pt-32 pb-20 bg-gradient-to-b from-luxury-900 to-divine-900">
         <div className="absolute inset-0 opacity-10">
-          <img src="/src/assets/images/backgrounds/astrology-zodiac.webp" alt="" className="w-full h-full object-cover" />
+          <img src={astrologyZodiacBg} alt="" className="w-full h-full object-cover" />
         </div>
         <div className="relative text-center max-w-4xl mx-auto px-6">
           <CrownDecoration />
           <h1 className="text-5xl md:text-7xl font-bold font-cinzel text-luxury-300 mt-4">
-            About Dr. Pranjal D. Sharma
+            About<br></br>Dr. Pranjal D. Sharma
           </h1>
           <p className="text-lg md:text-xl text-white/80 mt-6">
             A journey of three decades dedicated to spiritual healing, cosmic wisdom, and profound transformation.
@@ -35,8 +45,16 @@ const About = () => {
         </div>
       </div>
 
-      {/* Story Section */}
-      <section className="py-24">
+      {/* Story Section with Background */}
+      <section 
+        className="py-24 relative"
+        style={{
+          backgroundImage: `linear-gradient(rgba(88, 28, 135, 0.80), rgba(88, 28, 135, 0.80)), url(${particleOverlayBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div 
@@ -70,11 +88,33 @@ const About = () => {
         </div>
       </section>
 
-      {/* Milestones Section */}
-      <Milestones />
+      {/* Milestones Section with Video Background */}
+      <section className="relative py-20">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover opacity-25 pointer-events-none"
+            style={{ filter: 'blur(1px)' }}
+          >
+            <source src={horoscopeVideo} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-900/70 to-pink-900/70 pointer-events-none"></div>
+        </div>
+        <Milestones />
+      </section>
 
-      {/* Mission & Vision Section */}
-      <section className="py-24 bg-luxury-900">
+      {/* Mission & Vision Section with Background */}
+      <section 
+        className="py-24 bg-luxury-900 relative"
+        style={{
+          backgroundImage: `linear-gradient(rgba(88, 28, 135, 0.85), rgba(88, 28, 135, 0.85)), url(${bokehGlitterBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
         <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 text-center">
           <div className="space-y-4">
             <h3 className="font-cinzel text-3xl font-bold text-purple-300">Our Mission</h3>
@@ -96,7 +136,6 @@ const About = () => {
         className="py-24 bg-cover bg-center bg-fixed"
         style={{ backgroundImage: `url(${signatureBg})` }}
       >
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold font-cinzel text-luxury-300">
@@ -124,7 +163,7 @@ const Milestones = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
 
   return (
-    <div ref={ref} className="py-20 bg-gradient-to-r from-purple-900/30 to-pink-900/30">
+    <div ref={ref} className="relative py-20 z-10">
       <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <MilestoneItem end={30} suffix="+" label="Years of Experience" inView={inView} />
         <MilestoneItem end={10000} suffix="+" label="Lives Impacted" inView={inView} />

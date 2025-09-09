@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import NewsLetter from "../components/NewsLetter";
 import FooterMenu from "../components/FooterMenu";
 import CrownDecoration from "../components/CrownDecoration";
+import MagicalEffects from "../components/MagicalEffects";
 import "/fonts.css";
 // Import AOS library
 import AOS from "aos";
@@ -72,6 +73,9 @@ const Courses = () => {
         backgroundAttachment: "fixed",
       }}
     >
+      {/* Magical Effects Layer */}
+      <MagicalEffects page="courses" intensity="medium" enableScrollTrigger={true} />
+      
       <Navbar />
 
       {/* Header Section */}
