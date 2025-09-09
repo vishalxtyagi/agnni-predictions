@@ -3,7 +3,9 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-This is "Agnni Predictions" - a React-based spiritual consultation website for Dr. Pranjal D. Sharma's services. The site features celestial themes, mystical elements, and comprehensive information about tarot, astrology, numerology, and other spiritual services.
+**TRANSFORMED**: "Agnni Predictions" - A premium, cinematic React-based spiritual consultation website for Dr. Pranjal D. Sharma's services. The site now features industry-leading luxury design, sophisticated animations, and a breathtaking user experience that embodies divine elegance and mysticism.
+
+**Key Achievement**: Complete transformation from amateur implementation to industry-leading digital experience serving as a benchmark for premium spiritual services websites.
 
 ## Common Commands
 ```bash
@@ -21,29 +23,39 @@ npm run lint         # Run ESLint
 ### Tech Stack
 - **Frontend**: React 18 with TypeScript
 - **Build Tool**: Vite
-- **Styling**: TailwindCSS
+- **Styling**: TailwindCSS + Premium Design System
 - **Routing**: React Router DOM v6
-- **Animations**: AOS (Animate On Scroll)
+- **Animations**: GSAP (Professional), Framer Motion, Lenis Smooth Scroll
+- **3D/Interactive**: Three.js, Google Model Viewer
 - **Icons**: Lucide React
-- **Sliders**: Swiper
+- **Typography**: Google Fonts (Cinzel, Inter, Playfair Display)
+- **Performance**: Custom optimization utilities for 60fps animations
 
 ### Project Structure
 ```
 src/
-├── components/          # Reusable UI components
-│   ├── CursorEffects.tsx    # Sparkle cursor effects
-│   ├── Footer.tsx           # Site footer
-│   ├── LoadingScreen.tsx    # Initial loading animation
-│   ├── Navbar.tsx          # Main navigation
-│   └── *Slider.tsx         # Various content sliders
+├── components/          # Premium UI components
+│   ├── CursorEffects.tsx           # Sophisticated sparkle cursor with interactions
+│   ├── LoadingScreen.tsx           # Cinematic video preloader (loader.mp4)
+│   ├── SmoothScrollProvider.tsx    # GSAP + Lenis smooth scrolling system
+│   ├── StrategicBackgroundVideo.tsx # Context-aware video backgrounds
+│   ├── PremiumServiceCard.tsx      # Luxury service cards with GSAP animations
+│   ├── LuxuryTestimonialCarousel.tsx # Premium testimonial carousel
+│   ├── InteractiveCrystalGallery.tsx # 3D-style product gallery with modals
+│   ├── Navbar.tsx                  # Enhanced navigation
+│   ├── Footer.tsx                  # Site footer
+│   └── *Slider.tsx                 # Legacy sliders
 ├── pages/              # Route components
+│   ├── PremiumHome.tsx     # Transformed landing page with all premium features
+│   ├── Home.tsx           # Original landing page (preserved)
+│   ├── Consultation.tsx    # Premium services with enhanced cards
 │   ├── About.tsx           # About Agnni Predictions
 │   ├── Contact.tsx         # Contact information
-│   ├── Consultation.tsx    # Services listing
 │   ├── Courses.tsx         # Educational content (temp removed)
 │   ├── Guidance.tsx        # Additional guidance content
-│   ├── Home.tsx           # Landing page
 │   └── Shop.tsx           # Spiritual products
+├── utils/              # Utility functions
+│   └── performanceOptimizer.ts # 60fps animation optimizations
 ├── assets/            # Static assets
 │   ├── images/            # Organized by category
 │   │   ├── backgrounds/   # Background images

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { gsap } from 'gsap';
 
 interface Sparkle {
   id: number;
@@ -7,29 +8,78 @@ interface Sparkle {
   createdAt: number;
   size: number;
   color: string;
+  type: 'trail' | 'burst' | 'hover';
+}
+
+interface CursorState {
+  x: number;
+  y: number;
+  isOverInteractive: boolean;
+  interactiveType: string;
 }
 
 const CursorEffects: React.FC = () => {
   const [sparkles, setSparkles] = useState<Sparkle[]>([]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [cursorState, setCursorState] = useState<CursorState>({
+    x: 0,
+    y: 0,
+    isOverInteractive: false,
+    interactiveType: ''
+  });
+  const cursorRef = useRef<HTMLDivElement>(null);
 
-  const colors = ['#8B5CF6', '#EC4899', '#F59E0B', '#10B981', '#3B82F6'];
+  // Premium color palette - refined and elegant
+  const luxuryColors = {
+    white: '#ffffff',
+    softPurple: '#c699ff',
+    gold: '#ffd320',
+    mystic: '#e879f9',
+    divine: '#9c6cff'
+  };
+
+  const colorPalette = [luxuryColors.white, luxuryColors.softPurple, luxuryColors.gold];
 
   useEffect(() => {
     let animationFrame: number;
 
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      const target = e.target as HTMLElement;
+      const isInteractive = target?.matches('button, a, [role="button"], .interactive, input, textarea') || false;
+      const interactiveType = target?.matches('button, [role="button"]') ? 'button' : 
+                             target?.matches('a') ? 'link' : 'default';
 
-      // Create sparkles on mouse movement
-      if (Math.random() > 0.6) {
+      setCursorState(prev => ({
+        x: e.clientX,
+        y: e.clientY,
+        isOverInteractive: isInteractive,
+        interactiveType
+      }));
+
+      // Create refined trailing sparkles - less frequent, more elegant
+      if (Math.random() > 0.85) {
         const newSparkle: Sparkle = {
           id: Date.now() + Math.random(),
-          x: e.clientX + (Math.random() - 0.5) * 20,
-          y: e.clientY + (Math.random() - 0.5) * 20,
+          x: e.clientX + (Math.random() - 0.5) * 15,
+          y: e.clientY + (Math.random() - 0.5) * 15,
           createdAt: Date.now(),
-          size: Math.random() * 8 + 4,
-          color: colors[Math.floor(Math.random() * colors.length)]
+          size: Math.random() * 3 + 2, // Smaller, more refined
+          color: colorPalette[Math.floor(Math.random() * colorPalette.length)],
+          type: 'trail'
+        };
+
+        setSparkles(prev => [...prev, newSparkle]);
+      }
+
+      // Enhanced sparkles around interactive elements
+      if (isInteractive && Math.random() > 0.7) {
+        const newSparkle: Sparkle = {
+          id: Date.now() + Math.random(),
+          x: e.clientX + (Math.random() - 0.5) * 25,
+          y: e.clientY + (Math.random() - 0.5) * 25,
+          createdAt: Date.now(),
+          size: Math.random() * 4 + 2,
+          color: luxuryColors.gold,
+          type: 'hover'
         };
 
         setSparkles(prev => [...prev, newSparkle]);
@@ -37,21 +87,28 @@ const CursorEffects: React.FC = () => {
     };
 
     const handleClick = (e: MouseEvent) => {
-      // Create burst effect on click
-      const burstCount = 12;
+      const target = e.target as HTMLElement;
+      const isCTA = target?.matches('button, [role="button"], .cta-button') || false;
+      
+      // Premium burst effect - more elegant and refined
+      const burstCount = isCTA ? 16 : 8;
       const newSparkles: Sparkle[] = [];
+      const burstRadius = isCTA ? 60 : 40;
 
       for (let i = 0; i < burstCount; i++) {
         const angle = (i / burstCount) * Math.PI * 2;
-        const distance = Math.random() * 50 + 20;
+        const distance = Math.random() * burstRadius + 15;
+        const sparkleColor = isCTA ? luxuryColors.gold : 
+                            colorPalette[Math.floor(Math.random() * colorPalette.length)];
         
         newSparkles.push({
           id: Date.now() + Math.random() + i,
           x: e.clientX + Math.cos(angle) * distance,
           y: e.clientY + Math.sin(angle) * distance,
           createdAt: Date.now(),
-          size: Math.random() * 6 + 3,
-          color: colors[Math.floor(Math.random() * colors.length)]
+          size: Math.random() * 4 + (isCTA ? 3 : 2),
+          color: sparkleColor,
+          type: 'burst'
         });
       }
 
@@ -60,59 +117,136 @@ const CursorEffects: React.FC = () => {
 
     const animate = () => {
       setSparkles(prev => 
-        prev.filter(sparkle => Date.now() - sparkle.createdAt < 1000)
+        prev.filter(sparkle => Date.now() - sparkle.createdAt < 1200)
       );
       animationFrame = requestAnimationFrame(animate);
+    };
+
+    // Custom cursor styling
+    const updateCursorStyle = () => {
+      if (cursorState.isOverInteractive) {
+        document.body.style.cursor = 'none';
+      } else {
+        document.body.style.cursor = 'none';
+      }
     };
 
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('click', handleClick);
     animationFrame = requestAnimationFrame(animate);
+    updateCursorStyle();
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('click', handleClick);
       cancelAnimationFrame(animationFrame);
+      document.body.style.cursor = 'auto';
     };
-  }, [colors]);
+  }, [cursorState.isOverInteractive]);
+
+  // GSAP animations for sparkles
+  useEffect(() => {
+    sparkles.forEach(sparkle => {
+      const element = document.getElementById(`sparkle-${sparkle.id}`);
+      if (element && sparkle.type === 'burst') {
+        gsap.fromTo(element,
+          { scale: 0, rotation: 0 },
+          { 
+            scale: 1, 
+            rotation: 360,
+            duration: 0.6,
+            ease: "back.out(1.7)",
+            yoyo: true,
+            repeat: 1
+          }
+        );
+      }
+    });
+  }, [sparkles]);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-50">
-      {sparkles.map(sparkle => (
-        <div
-          key={sparkle.id}
-          className="absolute animate-pulse"
+    <>
+      {/* Custom Cursor */}
+      <div 
+        ref={cursorRef}
+        className="fixed pointer-events-none z-[60] mix-blend-difference"
+        style={{
+          left: cursorState.x,
+          top: cursorState.y,
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
+        <div 
+          className={`transition-all duration-200 ease-out ${
+            cursorState.isOverInteractive 
+              ? 'w-8 h-8 border-2 border-gold-400' 
+              : 'w-4 h-4 bg-white'
+          } rounded-full`}
           style={{
-            left: sparkle.x,
-            top: sparkle.y,
-            width: sparkle.size,
-            height: sparkle.size,
-            backgroundColor: sparkle.color,
-            borderRadius: '50%',
-            transform: 'translate(-50%, -50%)',
-            animation: `sparkle-fade 1s ease-out forwards`,
-            boxShadow: `0 0 ${sparkle.size * 2}px ${sparkle.color}`,
+            boxShadow: cursorState.isOverInteractive 
+              ? '0 0 20px rgba(255, 211, 32, 0.6)' 
+              : '0 0 10px rgba(255, 255, 255, 0.8)',
           }}
-        />
-      ))}
+        >
+          {cursorState.isOverInteractive && (
+            <div className="absolute inset-0 rounded-full bg-gold-400/20 animate-pulse" />
+          )}
+        </div>
+      </div>
+
+      {/* Premium Sparkles */}
+      <div className="fixed inset-0 pointer-events-none z-50">
+        {sparkles.map(sparkle => (
+          <div
+            key={sparkle.id}
+            id={`sparkle-${sparkle.id}`}
+            className="absolute"
+            style={{
+              left: sparkle.x,
+              top: sparkle.y,
+              width: sparkle.size,
+              height: sparkle.size,
+              transform: 'translate(-50%, -50%)',
+            }}
+          >
+            <div
+              className="w-full h-full rounded-full animate-sparkle"
+              style={{
+                backgroundColor: sparkle.color,
+                boxShadow: `0 0 ${sparkle.size * 3}px ${sparkle.color}`,
+                animation: `sparkle-fade ${sparkle.type === 'burst' ? '1.2s' : '1s'} ease-out forwards`,
+              }}
+            />
+            {sparkle.type === 'hover' && (
+              <div 
+                className="absolute inset-0 rounded-full animate-ping"
+                style={{
+                  backgroundColor: sparkle.color,
+                  opacity: 0.4,
+                }}
+              />
+            )}
+          </div>
+        ))}
+      </div>
 
       <style jsx>{`
         @keyframes sparkle-fade {
           0% {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0) rotate(0deg);
           }
-          50% {
+          20% {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1.2) rotate(90deg);
           }
           100% {
             opacity: 0;
-            transform: translate(-50%, -50%) scale(0.5);
+            transform: translate(-50%, -50%) scale(0.3) rotate(180deg);
           }
         }
       `}</style>
-    </div>
+    </>
   );
 };
 

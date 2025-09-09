@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import logo from '../assets/images/logos/agnni-logo-main.webp';
+import React, { useEffect, useState, useRef } from 'react';
+import { gsap } from 'gsap';
 import loaderVideo from '../assets/videos/loader.mp4';
 
 interface LoadingScreenProps {
@@ -7,112 +7,101 @@ interface LoadingScreenProps {
 }
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
-  const [progress, setProgress] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const duration = 3000; // 3 seconds loading time
-    const intervalTime = 50; // Update every 50ms
-    const increment = (100 / duration) * intervalTime;
+    // Check if video is loaded and ready
+    const video = videoRef.current;
+    if (!video) return;
 
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        const newProgress = prev + increment;
-        if (newProgress >= 100) {
-          clearInterval(interval);
-          // Start fade out after loading complete
-          setTimeout(() => {
-            setIsVisible(false);
-            setTimeout(onLoadingComplete, 500); // Wait for fade out animation
-          }, 500);
-          return 100;
-        }
-        return newProgress;
-      });
-    }, intervalTime);
+    const handleCanPlayThrough = () => {
+      setIsVideoReady(true);
+    };
 
-    return () => clearInterval(interval);
-  }, [onLoadingComplete]);
+    const handleVideoEnd = () => {
+      if (!isComplete) {
+        setIsComplete(true);
+        // Premium fade-out animation using GSAP
+        gsap.to(containerRef.current, {
+          opacity: 0,
+          scale: 1.1,
+          duration: 1.2,
+          ease: "power3.inOut",
+          onComplete: () => {
+            setTimeout(onLoadingComplete, 200);
+          }
+        });
+      }
+    };
 
-  if (!isVisible) return null;
+    video.addEventListener('canplaythrough', handleCanPlayThrough);
+    video.addEventListener('ended', handleVideoEnd);
+
+    // Fallback timeout in case video doesn't load properly
+    const fallbackTimeout = setTimeout(() => {
+      if (!isComplete) {
+        setIsComplete(true);
+        gsap.to(containerRef.current, {
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.inOut",
+          onComplete: onLoadingComplete
+        });
+      }
+    }, 5000);
+
+    return () => {
+      video.removeEventListener('canplaythrough', handleCanPlayThrough);
+      video.removeEventListener('ended', handleVideoEnd);
+      clearTimeout(fallbackTimeout);
+    };
+  }, [onLoadingComplete, isComplete]);
+
+  // Premium entrance animation
+  useEffect(() => {
+    if (isVideoReady && containerRef.current) {
+      gsap.fromTo(containerRef.current, 
+        { opacity: 0 },
+        { opacity: 1, duration: 0.8, ease: "power2.out" }
+      );
+    }
+  }, [isVideoReady]);
 
   return (
-    <div className={`fixed inset-0 bg-gradient-to-br from-purple-900 via-black to-pink-900 flex items-center justify-center z-[100] transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-      {/* Background Video */}
-      <div className="absolute inset-0 overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-30"
-        >
-          <source src={loaderVideo} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/50"></div>
-      </div>
+    <div 
+      ref={containerRef}
+      className="fixed inset-0 z-[9999] bg-black overflow-hidden"
+      style={{ opacity: 0 }}
+    >
+      {/* Full-screen Premium Video Loader */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{
+          filter: 'contrast(1.1) saturate(1.2) brightness(0.95)',
+        }}
+      >
+        <source src={loaderVideo} type="video/mp4" />
+      </video>
 
-      {/* Floating Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-purple-400 rounded-full opacity-60 animate-pulse"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="relative z-10 text-center">
-        {/* Logo */}
-        <div className="mb-8 animate-pulse">
-          <img 
-            src={logo} 
-            alt="Agnni Predictions" 
-            className="h-24 mx-auto mb-4"
-          />
-          <h1 className="text-3xl font-bold text-white font-britannic">
-            Agnni Predictions
-          </h1>
-          <p className="text-purple-300 text-lg font-futura">
-            Awakening Divine Wisdom
-          </p>
-        </div>
-
-        {/* Progress Bar */}
-        <div className="w-80 max-w-md mx-auto">
-          <div className="bg-white/20 rounded-full h-2 mb-4 overflow-hidden backdrop-blur-sm">
-            <div 
-              className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-300 ease-out"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-          <p className="text-white/80 text-sm font-futura">
-            {Math.round(progress)}% Loading...
-          </p>
-        </div>
-
-        {/* Mystical Elements */}
-        <div className="mt-8 flex justify-center space-x-8">
-          {['✨', '🔮', '⭐', '🌙'].map((symbol, index) => (
-            <div
-              key={index}
-              className="text-2xl animate-bounce"
-              style={{
-                animationDelay: `${index * 0.2}s`,
-                animationDuration: '2s'
-              }}
-            >
-              {symbol}
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Subtle overlay for premium depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10 pointer-events-none" />
+      
+      {/* Premium glow effect */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 30%, rgba(139, 69, 194, 0.03) 70%)',
+          mixBlendMode: 'screen'
+        }}
+      />
     </div>
   );
 };
