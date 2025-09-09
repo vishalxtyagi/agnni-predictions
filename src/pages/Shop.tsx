@@ -25,7 +25,7 @@ const Shop = () => {
     {
       title: "Black Salt for Nazar Removal",
       description:
-        "Protect yourself and your space from negativity with our specially prepared Black Salt. Chanted with sacred mantras over 1 lakh times by Dr. Pranjal D. Shharma, making it highly potent for energy cleansing.",
+        "Protect yourself and your space from negativity with our specially prepared Black Salt. Chanted with sacred mantras over 1 lakh times by Dr. Pranjal D. Sharma, making it highly potent for energy cleansing.",
       image: BlackSalt,
       price: "₹799",
       featured: true
@@ -121,7 +121,7 @@ const Shop = () => {
       <div className="pt-20 pb-10 text-center" data-aos="fade-down">
         <h1 className="text-5xl font-bold mb-4 font-britannic">Products/Shop</h1>
         <p className="text-lg opacity-80 max-w-2xl mx-auto font-futura">
-          Spiritual products blessed with sacred mantras by Dr. Pranjal D. Shharma. Transform your space with divine energy and protection.
+          Spiritual products blessed with sacred mantras by Dr. Pranjal D. Sharma. Transform your space with divine energy and protection.
         </p>
       </div>
 

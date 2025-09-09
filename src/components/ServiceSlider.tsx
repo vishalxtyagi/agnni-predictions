@@ -90,7 +90,7 @@ export default function ServiceSlider() {
             Consultation Services
           </h2>
           <p className="text-lg opacity-80 max-w-3xl mx-auto font-futura">
-            Transform your life with divine guidance from Dr. Pranjal D. Shharma. All services priced at ₹1299.
+            Transform your life with divine guidance from Dr. Pranjal D. Sharma. All services priced at ₹1299.
           </p>
         </div>
 

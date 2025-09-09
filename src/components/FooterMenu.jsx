@@ -160,11 +160,11 @@ export default function FooterMenu() {
                     <a href="tel:+919870111356" className="text-purple-300 hover:text-purple-200 block text-sm">
                         📞 +91-9870111356
                     </a>
-                    <a href="mailto:pranjal@agnni.co" className="text-purple-300 hover:text-purple-200 block text-sm">
-                        📧 pranjal@agnni.co
+                    <a href="mailto:pranjal@agnni.co.in" className="text-purple-300 hover:text-purple-200 block text-sm">
+                        📧 pranjal@agnni.co.in
                     </a>
-                    <a href="https://www.agnni.co" className="text-purple-300 hover:text-purple-200 block text-sm">
-                        🌐 www.agnni.co
+                    <a href="https://agnni.co.in" className="text-purple-300 hover:text-purple-200 block text-sm">
+                        🌐 agnni.co.in
                     </a>
                 </div>
                 <div className="mt-4">

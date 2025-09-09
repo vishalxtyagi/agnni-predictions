@@ -335,7 +335,7 @@ const Home = () => {
             className="text-xl leading-relaxed mb-8 opacity-90 font-futura"
             data-aos="fade-up"
           >
-            Agnni Predictions, founded by Dr. Pranjal D. Shharma, is a holistic spiritual destination dedicated to guiding individuals towards clarity, healing, and transformation. With over 30 years of experience in astrology, numerology, tarot, Vastu Shastra, tantra, and energy healing, Dr. Shharma has helped more than 10,000 people worldwide, including prominent names from Bollywood and Indian television.
+            Agnni Predictions, founded by Dr. Pranjal D. Sharma, is a holistic spiritual destination dedicated to guiding individuals towards clarity, healing, and transformation. With over 30 years of experience in astrology, numerology, tarot, Vastu Shastra, tantra, and energy healing, Dr. Sharma has helped more than 10,000 people worldwide, including prominent names from Bollywood and Indian television.
           </p>
           <p
             className="text-lg leading-relaxed mb-8 opacity-80 font-futura"

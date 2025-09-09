@@ -73,10 +73,10 @@ const About = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div data-aos="fade-right">
               <h2 className="text-4xl font-bold mb-6 font-britannic">
-                Dr. Pranjal D. Shharma
+                Dr. Pranjal D. Sharma
               </h2>
               <p className="text-lg mb-6 opacity-90 leading-relaxed font-futura">
-                Agnni Predictions, founded by Dr. Pranjal D. Shharma, is a holistic spiritual destination dedicated to guiding individuals towards clarity, healing, and transformation. With over 30 years of experience in astrology, numerology, tarot, Vastu Shastra, tantra, and energy healing, Dr. Shharma has helped more than 10,000 people worldwide, including prominent names from Bollywood and Indian television.
+                Agnni Predictions, founded by Dr. Pranjal D. Sharma, is a holistic spiritual destination dedicated to guiding individuals towards clarity, healing, and transformation. With over 30 years of experience in astrology, numerology, tarot, Vastu Shastra, tantra, and energy healing, Dr. Sharma has helped more than 10,000 people worldwide, including prominent names from Bollywood and Indian television.
               </p>
               <p className="text-lg mb-6 opacity-90 leading-relaxed font-futura">
                 At Agnni Predictions, we believe that spirituality is not just about rituals—it is about empowerment and balance. Every service, whether it is Tarot Reading, Kundli Analysis, Numerology, Angel Healing, Crystal Therapy, Vastu Consultation, or Black Magic Removal, is designed to bring harmony to your mind, body, spirit, and surroundings.
@@ -90,7 +90,7 @@ const About = () => {
               <div className="bg-pink-600/30 p-6 rounded-lg mb-8 border-l-4 border-pink-400">
                 <h3 className="text-xl font-bold mb-3 text-pink-200 font-britannic">🌿 Our Vision</h3>
                 <p className="text-base opacity-90 font-futura">
-                  Dr. Shharma envisions a spiritually awakened world where individuals live in alignment with universal energies. Soon, Agnni Predictions will launch a Gurukul, a spiritual school dedicated to nurturing the next generation of healers and spiritual leaders.
+                  Dr. Sharma envisions a spiritually awakened world where individuals live in alignment with universal energies. Soon, Agnni Predictions will launch a Gurukul, a spiritual school dedicated to nurturing the next generation of healers and spiritual leaders.
                 </p>
               </div>
               <div className="flex gap-16 h-[100px]">
@@ -147,7 +147,7 @@ const About = () => {
               Why Choose Agnni Predictions
             </h2>
             <p className="text-lg opacity-80 max-w-4xl mx-auto font-futura">
-              "My mission is to uplift human consciousness through divine practices." – Dr. Pranjal D. Shharma
+              "My mission is to uplift human consciousness through divine practices." – Dr. Pranjal D. Sharma
             </p>
             <p className="text-base opacity-70 max-w-4xl mx-auto font-futura mt-4">
               At Agnni Predictions, every consultation, healing, and remedy is rooted in authenticity, compassion, and decades of spiritual mastery. When you choose Agnni Predictions, you choose a path of light, healing, and empowerment guided by divine practices.
