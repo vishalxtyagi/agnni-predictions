@@ -259,7 +259,7 @@ const PremiumHome: React.FC = () => {
           </div>
 
           <a 
-            href="/Consultation"
+            href="/consultation"
             className="group inline-flex items-center space-x-3 bg-gradient-to-r from-gold-500 via-gold-600 to-gold-500 hover:from-gold-400 hover:via-gold-500 hover:to-gold-400 text-black font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-gold hover:shadow-gold-lg font-inter cta-button interactive transform hover:scale-105 text-lg"
           >
             <span>Explore All Services</span>

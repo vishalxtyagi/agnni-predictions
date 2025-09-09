@@ -36,9 +36,9 @@ const Navbar = () => {
 
         <div className="hidden md:flex space-x-8 items-center">
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/Consultation">Consultation</NavLink>
+          <NavLink to="/consultation">Consultation</NavLink>
           <NavLink to="/about">About</NavLink>
-          <NavLink to="/Shop">Shop</NavLink>
+          <NavLink to="/shop">Shop</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </div>
 
@@ -53,9 +53,9 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-20 left-0 w-full bg-black/90 backdrop-blur-xl rounded-b-2xl shadow-lg p-6 space-y-4">
           <MobileNavLink to="/" onClick={() => setMobileMenuOpen(false)}>Home</MobileNavLink>
-          <MobileNavLink to="/Consultation" onClick={() => setMobileMenuOpen(false)}>Consultation</MobileNavLink>
+          <MobileNavLink to="/consultation" onClick={() => setMobileMenuOpen(false)}>Consultation</MobileNavLink>
           <MobileNavLink to="/about" onClick={() => setMobileMenuOpen(false)}>About</MobileNavLink>
-          <MobileNavLink to="/Shop" onClick={() => setMobileMenuOpen(false)}>Shop</MobileNavLink>
+          <MobileNavLink to="/shop" onClick={() => setMobileMenuOpen(false)}>Shop</MobileNavLink>
           <MobileNavLink to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</MobileNavLink>
         </div>
       )}

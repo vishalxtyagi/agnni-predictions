@@ -181,7 +181,7 @@ export default function ServiceSlider() {
                         {service.description}
                       </p>
                       <a 
-                        href="/Consultation"
+                        href="/consultation"
                         className="inline-block w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center py-2 px-4 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-colors"
                       >
                         Book Now

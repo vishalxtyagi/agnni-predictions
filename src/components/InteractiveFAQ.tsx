@@ -396,7 +396,7 @@ const InteractiveFAQ: React.FC = () => {
                         </span>
                         {item.category === 'services' && (
                           <a
-                            href="/Consultation"
+                            href="/consultation"
                             className="text-gold-400 hover:text-gold-300 text-xs sm:text-sm font-medium transition-colors duration-300"
                           >
                             Book This Service →

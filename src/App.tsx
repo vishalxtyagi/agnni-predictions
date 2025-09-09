@@ -40,10 +40,10 @@ const App = () => {
                 <Route path="/" element={<PremiumHome />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/guidance" element={<Guidance />} />
-                <Route path="/Consultation" element={<Consultation />} />
-                <Route path="/Courses" element={<Courses />} />
+                <Route path="/consultation" element={<Consultation />} />
+                <Route path="/courses" element={<Courses />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/Shop" element={<Shop />} />
+                <Route path="/shop" element={<Shop />} />
               </Routes>
             </Router>
           </SmoothScrollProvider>

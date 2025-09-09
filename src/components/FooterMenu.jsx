@@ -73,25 +73,25 @@ export default function FooterMenu() {
                 </div>
                 <ul className="space-y-4">
                 <li>
-                    <a href="/Shop" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <a href="/shop" className="text-white/70 hover:text-purple-300 flex items-center">
                     <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
                     Black Salt for Nazar Removal
                     </a>
                 </li>
                 <li>
-                    <a href="/Shop" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <a href="/shop" className="text-white/70 hover:text-purple-300 flex items-center">
                     <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
                     Crystal Bracelets
                     </a>
                 </li>
                 <li>
-                    <a href="/Shop" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <a href="/shop" className="text-white/70 hover:text-purple-300 flex items-center">
                     <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
                     Amethyst Healing
                     </a>
                 </li>
                 <li>
-                    <a href="/Shop" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <a href="/shop" className="text-white/70 hover:text-purple-300 flex items-center">
                     <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
                     Spiritual Products
                     </a>
@@ -117,7 +117,7 @@ export default function FooterMenu() {
                     </a>
                 </li>
                 <li>
-                    <a href="/Consultation" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <a href="/consultation" className="text-white/70 hover:text-purple-300 flex items-center">
                     <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
                     Consultation Services
                     </a>
@@ -129,7 +129,7 @@ export default function FooterMenu() {
                     </a>
                 </li>
                 <li>
-                    <a href="/Shop" className="text-white/70 hover:text-purple-300 flex items-center">
+                    <a href="/shop" className="text-white/70 hover:text-purple-300 flex items-center">
                     <Bookmark className="text-purple-400 w-4 h-4 mr-2 fill-purple-400" />
                     Products/Shop
                     </a>
