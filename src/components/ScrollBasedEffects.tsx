@@ -4,9 +4,7 @@ import { useInView } from 'react-intersection-observer';
 
 // Import effect images
 import magicalFairy from '../assets/effects/mystical-fairy.png';
-import magicalButterfly from '../assets/effects/magical-butterfly.png';
 import purpleEnergySwirl from '../assets/effects/purple-energy-swirl.png';
-import magicalCrystalPortal from '../assets/effects/magical-crystal-portal.png';
 import goldenMagicFeather from '../assets/effects/golden-magic-feather.png';
 import mysticalLightBeam from '../assets/effects/mystical-light-beam.png';
 
@@ -42,8 +40,8 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
   const fairyY = useTransform(scrollY, [0, 1000, 2000, 3000, 4000], [200, 150, 300, 100, 400]);
   const fairyRotate = useTransform(scrollY, [0, 2000], [0, 360]);
 
-  const butterflyX = useTransform(scrollY, [500, 2500, 4500], [windowWidth, windowWidth * 0.2, -100]);
-  const butterflyY = useTransform(scrollY, [500, 1500, 2500, 3500], [300, 200, 450, 250]);
+  const crystalX = useTransform(scrollY, [500, 2500, 4500], [windowWidth, windowWidth * 0.2, -100]);
+  const crystalY = useTransform(scrollY, [500, 1500, 2500, 3500], [300, 200, 450, 250]);
 
   const energyX = useTransform(scrollY, [800, 3000], [-200, windowWidth + 200]);
   const energyY = useTransform(scrollY, [800, 2000, 3000], [400, 200, 500]);
@@ -57,6 +55,8 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
 
   const lightBeamScale = useTransform(scrollY, [1500, 2500, 3500], [0.2, 1.5, 0.6]);
   const lightBeamOpacity = useTransform(scrollY, [1500, 2000, 3000], [0, 0.8, 0.2]);
+  
+  const magicalParticleX = useTransform(scrollY, [0, 3000], [windowWidth + 100, -200]);
 
   return (
     <div className={`fixed inset-0 pointer-events-none overflow-hidden z-0 ${className}`} ref={containerRef}>
@@ -83,9 +83,9 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
         <motion.img
           src={magicalFairy}
           alt="Magical Fairy"
-          className="w-24 h-24 md:w-32 md:h-32 select-none"
+          className="w-32 h-32 md:w-40 md:h-40 select-none"
           style={{
-            filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.6))',
+            filter: 'drop-shadow(0 0 25px rgba(147, 51, 234, 0.8))',
           }}
           animate={{
             rotate: [0, 5, -5, 0],
@@ -100,25 +100,25 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
         />
       </motion.div>
 
-      {/* Butterfly - Cross Movement */}
+      {/* Crystal Portal - Cross Movement */}
       <motion.div
         className="absolute"
         style={{
-          x: butterflyX,
-          y: butterflyY,
+          x: crystalX,
+          y: crystalY,
           zIndex: 18
         }}
       >
         <motion.img
-          src={magicalButterfly}
-          alt="Magical Butterfly"
-          className="w-20 h-20 md:w-28 md:h-28 select-none"
+          src={purpleEnergySwirl}
+          alt="Purple Energy Swirl"
+          className="w-24 h-24 md:w-32 md:h-32 select-none"
           style={{
-            filter: 'drop-shadow(0 0 15px rgba(255, 215, 0, 0.5))',
+            filter: 'drop-shadow(0 0 18px rgba(147, 51, 234, 0.7))',
           }}
           animate={{
             y: [0, -10, 0],
-            rotate: [0, 3, -3, 0]
+            rotate: [0, 360]
           }}
           transition={{
             y: {
@@ -127,9 +127,9 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
               ease: "easeInOut"
             },
             rotate: {
-              duration: 3.5,
+              duration: 8,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "linear"
             }
           }}
         />
@@ -177,21 +177,28 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
           zIndex: 10
         }}
       >
-        <motion.img
-          src={magicalCrystalPortal}
-          alt="Magical Crystal Portal"
-          className="w-40 h-40 md:w-56 md:h-56 select-none"
+                <motion.img
+          src={mysticalLightBeam}
+          alt="Mystical Light Beam"
+          className="w-16 h-16 md:w-24 md:h-24 select-none opacity-80"
           style={{
-            filter: 'drop-shadow(0 0 30px rgba(147, 51, 234, 0.8))',
+            filter: 'drop-shadow(0 0 15px rgba(99, 102, 241, 0.8))',
+            x: magicalParticleX
           }}
           animate={{
-            rotate: [0, 360],
+            rotate: [0, 180, 360],
+            scale: [0.8, 1.1, 0.8]
           }}
           transition={{
             rotate: {
-              duration: 20,
+              duration: 4,
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut"
+            },
+            scale: {
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
             }
           }}
         />
@@ -302,12 +309,12 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
           exit={{ opacity: 0, x: 100 }}
         >
           <motion.img
-            src={magicalButterfly}
-            alt="Section Butterfly"
+            src={goldenMagicFeather}
+            alt="Section Magic Feather"
             className="w-20 h-20 select-none"
             animate={{
               x: [0, 30, 0],
-              rotate: [0, 5, -5, 0],
+              rotate: [0, 15, -15, 0],
             }}
             transition={{
               x: { duration: 4, repeat: Infinity },

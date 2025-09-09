@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 
 // Import magical effect images
 import magicalFairy from '../assets/effects/mystical-fairy.png';
-import magicalButterfly from '../assets/effects/magical-butterfly.png';
 import purpleEnergySwirl from '../assets/effects/purple-energy-swirl.png';
 import goldenMagicFeather from '../assets/effects/golden-magic-feather.png';
 
@@ -15,7 +14,7 @@ interface Sparkle {
   size: number;
   color: string;
   type: 'trail' | 'burst' | 'hover' | 'magical';
-  magicalType?: 'fairy' | 'butterfly' | 'energy' | 'feather';
+  magicalType?: 'fairy' | 'energy' | 'feather';
 }
 
 interface CursorState {
@@ -79,7 +78,7 @@ const CursorEffects: React.FC = () => {
 
       // Add magical effects occasionally
       if (Math.random() > 0.95) {
-        const magicalTypes: ('fairy' | 'butterfly' | 'energy' | 'feather')[] = ['fairy', 'butterfly', 'energy', 'feather'];
+        const magicalTypes: ('fairy' | 'energy' | 'feather')[] = ['fairy', 'energy', 'feather'];
         const randomMagicalType = magicalTypes[Math.floor(Math.random() * magicalTypes.length)];
         
         const magicalSparkle: Sparkle = {
@@ -240,7 +239,6 @@ const CursorEffects: React.FC = () => {
                 <img
                   src={
                     sparkle.magicalType === 'fairy' ? magicalFairy :
-                    sparkle.magicalType === 'butterfly' ? magicalButterfly :
                     sparkle.magicalType === 'energy' ? purpleEnergySwirl :
                     goldenMagicFeather
                   }
@@ -274,7 +272,7 @@ const CursorEffects: React.FC = () => {
         ))}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes sparkle-fade {
           0% {
             opacity: 0;

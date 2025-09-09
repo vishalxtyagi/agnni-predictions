@@ -50,117 +50,169 @@ const PremiumHome: React.FC = () => {
       {/* Premium Hero Carousel */}
       <HeroCarousel />
 
-      {/* Why Choose Agnni Predictions - Redesigned */}
+      {/* Why Choose Agnni Predictions - Completely Redesigned */}
       <section 
-        className="py-32 relative bg-gradient-to-b from-divine-900 to-luxury-900 animate-on-scroll"
+        className="py-32 relative overflow-hidden animate-on-scroll"
         aria-labelledby="why-choose-agnni"
       >
-        {/* Video Background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover opacity-20 pointer-events-none"
-            style={{ filter: 'blur(1px)' }}
-          >
-            <source src={painToPeaceVideo} type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-divine-900/80 to-luxury-900/90 pointer-events-none"></div>
+        {/* Dynamic Background */}
+        <div className="absolute inset-0">
+          {/* Video Background */}
+          <div className="absolute inset-0 overflow-hidden">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover opacity-15"
+              style={{ filter: 'blur(1px)' }}
+            >
+              <source src={painToPeaceVideo} type="video/mp4" />
+            </video>
+          </div>
+          
+          {/* Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-br from-divine-900/95 via-luxury-900/90 to-divine-900/95"></div>
+          <div className="absolute inset-0 bg-gradient-radial from-transparent via-purple-900/20 to-transparent"></div>
+          
+          {/* Animated Background Elements */}
+          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-gold-400/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-tl from-blue-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-gold-400/5 to-purple-500/5 rounded-full blur-2xl animate-spin slow"></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto px-6 z-10">
-          {/* Section Header */}
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center space-x-2 bg-gold-500/10 border border-gold-500/30 rounded-full px-6 py-2 mb-6">
-              <Sparkles className="w-5 h-5 text-gold-400" />
-              <span className="text-gold-400 font-semibold">30 Years of Divine Guidance</span>
+          {/* Enhanced Section Header */}
+          <div className="text-center mb-24">
+            <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-gold-500/20 via-gold-400/20 to-gold-500/20 border border-gold-400/40 rounded-full px-8 py-3 mb-8 backdrop-blur-md">
+              <Sparkles className="w-6 h-6 text-gold-400 animate-pulse" />
+              <span className="text-gold-400 font-bold text-lg">30 Years of Divine Guidance</span>
+              <Sparkles className="w-6 h-6 text-gold-400 animate-pulse delay-500" />
             </div>
-            <h2 id="why-choose-agnni" className="text-5xl lg:text-6xl font-bold font-cinzel text-luxury-300 mb-6">
+            
+            <h2 id="why-choose-agnni" className="text-6xl lg:text-7xl font-bold font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-luxury-200 via-gold-300 to-luxury-200 mb-8 leading-tight">
               Why Choose Agnni Predictions?
             </h2>
-            <p className="text-xl text-white/90 leading-relaxed font-inter max-w-4xl mx-auto">
-              "My mission is to uplift human consciousness through divine practices." – Dr. Pranjal D. Sharma
-            </p>
-          </div>
-
-          {/* Stats Section */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            <div className="text-center bg-gradient-to-br from-luxury-900/60 to-divine-900/60 rounded-2xl p-6 border border-luxury-500/20 backdrop-blur-md">
-              <div className="text-4xl font-bold text-gold-400 font-cinzel mb-2">30+</div>
-              <div className="text-white/80 text-sm">Years Experience</div>
-            </div>
-            <div className="text-center bg-gradient-to-br from-luxury-900/60 to-divine-900/60 rounded-2xl p-6 border border-luxury-500/20 backdrop-blur-md">
-              <div className="text-4xl font-bold text-gold-400 font-cinzel mb-2">10K+</div>
-              <div className="text-white/80 text-sm">Lives Transformed</div>
-            </div>
-            <div className="text-center bg-gradient-to-br from-luxury-900/60 to-divine-900/60 rounded-2xl p-6 border border-luxury-500/20 backdrop-blur-md">
-              <div className="text-4xl font-bold text-gold-400 font-cinzel mb-2">2</div>
-              <div className="text-white/80 text-sm">PhDs in Spiritual Sciences</div>
-            </div>
-            <div className="text-center bg-gradient-to-br from-luxury-900/60 to-divine-900/60 rounded-2xl p-6 border border-luxury-500/20 backdrop-blur-md">
-              <div className="text-4xl font-bold text-gold-400 font-cinzel mb-2">100%</div>
-              <div className="text-white/80 text-sm">Authentic Guidance</div>
+            
+            <div className="max-w-5xl mx-auto">
+              <p className="text-2xl text-white/90 leading-relaxed font-inter mb-4">
+                "My mission is to uplift human consciousness through divine practices."
+              </p>
+              <p className="text-lg text-gold-400 font-semibold">
+                – Dr. Pranjal D. Sharma
+              </p>
             </div>
           </div>
 
-          {/* Features Grid */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Side - Image */}
-            <div className="relative animate-on-scroll order-2 lg:order-1">
-              <div className="relative">
-                <img
-                  src={amethystCrystalsImg}
-                  alt="Beautiful amethyst crystals representing the spiritual and healing energy of Agnni Predictions services"
-                  className="w-full rounded-3xl shadow-divine border-2 border-luxury-500/30"
-                  style={{ filter: 'contrast(1.1) saturate(1.2)' }}
-                  loading="lazy"
-                />
-                <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center shadow-gold-lg animate-pulse">
-                  <Star className="w-16 h-16 text-black opacity-90" />
+          {/* Enhanced Stats Section with Animation */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+            <div className="group text-center bg-gradient-to-br from-luxury-900/80 to-divine-900/80 rounded-3xl p-8 border border-luxury-500/30 backdrop-blur-md hover:shadow-divine hover:scale-105 transition-all duration-500 hover:border-gold-400/50">
+              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-gold-300 to-gold-500 font-cinzel mb-3 group-hover:scale-110 transition-transform">30+</div>
+              <div className="text-white/80 text-base font-semibold">Years Experience</div>
+              <div className="w-12 h-1 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full mx-auto mt-3 group-hover:w-16 transition-all duration-300"></div>
+            </div>
+            
+            <div className="group text-center bg-gradient-to-br from-luxury-900/80 to-divine-900/80 rounded-3xl p-8 border border-luxury-500/30 backdrop-blur-md hover:shadow-divine hover:scale-105 transition-all duration-500 hover:border-gold-400/50">
+              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-gold-300 to-gold-500 font-cinzel mb-3 group-hover:scale-110 transition-transform">10K+</div>
+              <div className="text-white/80 text-base font-semibold">Lives Transformed</div>
+              <div className="w-12 h-1 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full mx-auto mt-3 group-hover:w-16 transition-all duration-300"></div>
+            </div>
+            
+            <div className="group text-center bg-gradient-to-br from-luxury-900/80 to-divine-900/80 rounded-3xl p-8 border border-luxury-500/30 backdrop-blur-md hover:shadow-divine hover:scale-105 transition-all duration-500 hover:border-gold-400/50">
+              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-gold-300 to-gold-500 font-cinzel mb-3 group-hover:scale-110 transition-transform">2</div>
+              <div className="text-white/80 text-base font-semibold">PhDs in Spiritual Sciences</div>
+              <div className="w-12 h-1 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full mx-auto mt-3 group-hover:w-16 transition-all duration-300"></div>
+            </div>
+            
+            <div className="group text-center bg-gradient-to-br from-luxury-900/80 to-divine-900/80 rounded-3xl p-8 border border-luxury-500/30 backdrop-blur-md hover:shadow-divine hover:scale-105 transition-all duration-500 hover:border-gold-400/50">
+              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-gold-300 to-gold-500 font-cinzel mb-3 group-hover:scale-110 transition-transform">100%</div>
+              <div className="text-white/80 text-base font-semibold">Authentic Guidance</div>
+              <div className="w-12 h-1 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full mx-auto mt-3 group-hover:w-16 transition-all duration-300"></div>
+            </div>
+          </div>
+
+          {/* Redesigned Features Grid with Better Visual Hierarchy */}
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            {/* Enhanced Image Side */}
+            <div className="relative order-2 lg:order-1">
+              <div className="relative group">
+                {/* Main Image with Enhanced Effects */}
+                <div className="relative overflow-hidden rounded-3xl">
+                  <img
+                    src={amethystCrystalsImg}
+                    alt="Beautiful amethyst crystals representing the spiritual and healing energy of Agnni Predictions services"
+                    className="w-full h-96 object-cover rounded-3xl shadow-2xl border-4 border-luxury-500/40 group-hover:scale-105 transition-transform duration-700"
+                    style={{ filter: 'contrast(1.2) saturate(1.3) brightness(1.1)' }}
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-purple-500/10 rounded-3xl"></div>
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-luxury-900 to-divine-900 border border-luxury-500/30 rounded-2xl p-4 backdrop-blur-md">
-                  <div className="text-gold-400 text-sm font-semibold">Trusted by</div>
-                  <div className="text-white text-lg font-bold">Bollywood & TV Stars</div>
+                
+                {/* Floating Badge */}
+                <div className="absolute -top-8 -right-8 w-40 h-40 bg-gradient-to-br from-gold-400 via-gold-500 to-gold-600 rounded-full flex items-center justify-center shadow-2xl animate-float border-4 border-white/20">
+                  <div className="text-center">
+                    <Star className="w-12 h-12 text-black mx-auto mb-1" />
+                    <div className="text-black font-bold text-xs">TRUSTED</div>
+                  </div>
                 </div>
+                
+                {/* Testimonial Card */}
+                <div className="absolute -bottom-8 -left-8 bg-gradient-to-br from-luxury-900/95 to-divine-900/95 border border-luxury-400/40 rounded-3xl p-6 backdrop-blur-md shadow-2xl max-w-xs">
+                  <div className="flex items-center space-x-3 mb-3">
+                    <div className="flex space-x-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-gold-400 fill-current" />
+                      ))}
+                    </div>
+                    <span className="text-gold-400 font-bold text-sm">5.0</span>
+                  </div>
+                  <p className="text-white/90 text-sm font-semibold mb-2">Trusted by</p>
+                  <p className="text-gold-400 text-lg font-bold">Bollywood & TV Stars</p>
+                </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute top-4 left-4 w-8 h-8 bg-gold-400/30 rounded-full animate-pulse"></div>
+                <div className="absolute bottom-4 right-4 w-6 h-6 bg-purple-400/30 rounded-full animate-pulse delay-1000"></div>
               </div>
             </div>
 
-            {/* Right Side - Features */}
-            <div className="space-y-8 animate-on-scroll order-1 lg:order-2">
-              <div className="bg-gradient-to-br from-luxury-900/60 to-divine-900/60 rounded-3xl p-8 border border-luxury-500/30 backdrop-blur-md hover:shadow-divine transition-all duration-500 group">
-                <div className="flex items-start space-x-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-gold-500 to-gold-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Star className="w-7 h-7 text-black" />
+            {/* Enhanced Features Side */}
+            <div className="space-y-8 order-1 lg:order-2">
+              <div className="group bg-gradient-to-br from-luxury-900/80 to-divine-900/80 rounded-3xl p-8 border border-luxury-500/30 backdrop-blur-md hover:shadow-2xl hover:shadow-gold-500/20 transition-all duration-500 hover:border-gold-400/50 hover:scale-105">
+                <div className="flex items-start space-x-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-gold-400 via-gold-500 to-gold-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+                    <Star className="w-8 h-8 text-black" />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold font-cinzel text-luxury-300 mb-2">Divine Guidance with Depth</h3>
-                    <p className="text-white/70 leading-relaxed">Blending ancient wisdom with modern insights for authentic spiritual solutions that truly transform lives.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-luxury-900/60 to-divine-900/60 rounded-3xl p-8 border border-luxury-500/30 backdrop-blur-md hover:shadow-divine transition-all duration-500 group">
-                <div className="flex items-start space-x-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Sparkles className="w-7 h-7 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold font-cinzel text-luxury-300 mb-2">Holistic Spiritual Solutions</h3>
-                    <p className="text-white/70 leading-relaxed">From Tarot to Tantra, Angel Healing to Vastu - complete spiritual transformation in one sacred space.</p>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-luxury-200 to-gold-300 mb-3">Divine Guidance with Depth</h3>
+                    <p className="text-white/80 leading-relaxed text-lg">Blending ancient wisdom with modern insights for authentic spiritual solutions that truly transform lives.</p>
+                    <div className="w-16 h-1 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full mt-4 group-hover:w-24 transition-all duration-300"></div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-luxury-900/60 to-divine-900/60 rounded-3xl p-8 border border-luxury-500/30 backdrop-blur-md hover:shadow-divine transition-all duration-500 group">
-                <div className="flex items-start space-x-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-blue-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Star className="w-7 h-7 text-white" />
+              <div className="group bg-gradient-to-br from-luxury-900/80 to-divine-900/80 rounded-3xl p-8 border border-luxury-500/30 backdrop-blur-md hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-500 hover:border-purple-400/50 hover:scale-105">
+                <div className="flex items-start space-x-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+                    <Sparkles className="w-8 h-8 text-white" />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold font-cinzel text-luxury-300 mb-2">Blessed Products & Mantras</h3>
-                    <p className="text-white/70 leading-relaxed">Limited-edition crystals, Black Salt, and spiritual tools blessed with sacred chants and divine energy.</p>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-luxury-200 to-purple-300 mb-3">Holistic Spiritual Solutions</h3>
+                    <p className="text-white/80 leading-relaxed text-lg">From Tarot to Tantra, Angel Healing to Vastu - complete spiritual transformation in one sacred space.</p>
+                    <div className="w-16 h-1 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full mt-4 group-hover:w-24 transition-all duration-300"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="group bg-gradient-to-br from-luxury-900/80 to-divine-900/80 rounded-3xl p-8 border border-luxury-500/30 backdrop-blur-md hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 hover:border-blue-400/50 hover:scale-105">
+                <div className="flex items-start space-x-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 via-blue-500 to-green-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+                    <Star className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-luxury-200 to-blue-300 mb-3">Blessed Products & Mantras</h3>
+                    <p className="text-white/80 leading-relaxed text-lg">Limited-edition crystals, Black Salt, and spiritual tools blessed with sacred chants and divine energy.</p>
+                    <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-blue-500 rounded-full mt-4 group-hover:w-24 transition-all duration-300"></div>
                   </div>
                 </div>
               </div>

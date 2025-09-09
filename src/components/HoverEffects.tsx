@@ -3,12 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Import effect images
 import magicalFairy from '../assets/effects/mystical-fairy.png';
-import magicalButterfly from '../assets/effects/magical-butterfly.png';
 import purpleEnergySwirl from '../assets/effects/purple-energy-swirl.png';
 import goldenMagicFeather from '../assets/effects/golden-magic-feather.png';
 
 interface InteractiveEffectConfig {
-  type: 'fairy' | 'butterfly' | 'energy' | 'feather';
+  type: 'fairy' | 'energy' | 'feather';
   duration: number;
   scale: number;
   spread: number;
@@ -16,7 +15,7 @@ interface InteractiveEffectConfig {
 
 interface HoverEffectsProps {
   children: React.ReactNode;
-  effectType?: 'fairy' | 'butterfly' | 'energy' | 'feather' | 'mixed';
+  effectType?: 'fairy' | 'energy' | 'feather' | 'mixed';
   intensity?: 'low' | 'medium' | 'high';
   className?: string;
 }
@@ -32,7 +31,6 @@ const HoverEffects: React.FC<HoverEffectsProps> = ({
 
   const effectImages = {
     fairy: magicalFairy,
-    butterfly: magicalButterfly,
     energy: purpleEnergySwirl,
     feather: goldenMagicFeather
   };
@@ -43,8 +41,8 @@ const HoverEffects: React.FC<HoverEffectsProps> = ({
     if (effectType === 'mixed') {
       return [
         { type: 'fairy', duration: 2, scale: 0.8, spread: 100 },
-        { type: 'butterfly', duration: 2.5, scale: 0.6, spread: 120 },
-        { type: 'energy', duration: 1.8, scale: 0.5, spread: 80 }
+        { type: 'energy', duration: 2.5, scale: 0.6, spread: 120 },
+        { type: 'feather', duration: 1.8, scale: 0.5, spread: 80 }
       ].map(config => ({
         ...config,
         scale: config.scale * (baseIntensity * 0.5),
@@ -53,7 +51,7 @@ const HoverEffects: React.FC<HoverEffectsProps> = ({
     }
     
     return [{
-      type: effectType as 'fairy' | 'butterfly' | 'energy' | 'feather',
+      type: effectType as 'fairy' | 'energy' | 'feather',
       duration: 2,
       scale: 0.7 * baseIntensity,
       spread: 100 * baseIntensity
@@ -111,7 +109,6 @@ const HoverEffects: React.FC<HoverEffectsProps> = ({
               style={{
                 filter: `drop-shadow(0 0 8px ${
                   effect.type === 'fairy' ? 'rgba(147, 51, 234, 0.6)' :
-                  effect.type === 'butterfly' ? 'rgba(255, 215, 0, 0.6)' :
                   effect.type === 'energy' ? 'rgba(147, 51, 234, 0.8)' :
                   'rgba(255, 215, 0, 0.8)'
                 })`,

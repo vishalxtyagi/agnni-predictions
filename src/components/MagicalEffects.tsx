@@ -3,9 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Import effect images
 import magicalFairy from '../assets/effects/mystical-fairy.png';
-import magicalButterfly from '../assets/effects/magical-butterfly.png';
 import purpleEnergySwirl from '../assets/effects/purple-energy-swirl.png';
-import magicalCrystalPortal from '../assets/effects/magical-crystal-portal.png';
 import goldenMagicFeather from '../assets/effects/golden-magic-feather.png';
 import mysticalLightBeam from '../assets/effects/mystical-light-beam.png';
 
@@ -49,37 +47,37 @@ const MagicalEffects: React.FC<MagicalEffectsProps> = ({
         {
           id: 'fairy-1',
           image: magicalFairy,
-          size: { width: 120, height: 120 },
+          size: { width: 160, height: 160 },
           duration: 20,
           delay: 0,
           path: 'M-100,300 Q200,100 500,200 T900,150 Q1200,100 1500,250',
           zIndex: 10,
-          opacity: 0.8,
+          opacity: 0.9,
           rotate: true,
           pulse: true
         },
         {
           id: 'fairy-2',
           image: magicalFairy,
-          size: { width: 80, height: 80 },
+          size: { width: 120, height: 120 },
           duration: 25,
           delay: 5,
           path: 'M1500,400 Q1200,200 800,350 T400,300 Q100,250 -100,400',
           zIndex: 8,
-          opacity: 0.6,
+          opacity: 0.7,
           rotate: true,
           pulse: false
         },
         {
-          id: 'butterfly-1',
-          image: magicalButterfly,
-          size: { width: 100, height: 100 },
+          id: 'fairy-3',
+          image: magicalFairy,
+          size: { width: 140, height: 140 },
           duration: 18,
           delay: 2,
           path: 'M-50,500 Q300,350 600,450 T1000,400 Q1300,350 1600,500',
           zIndex: 9,
-          opacity: 0.7,
-          rotate: false,
+          opacity: 0.8,
+          rotate: true,
           pulse: true
         },
         {
@@ -95,21 +93,21 @@ const MagicalEffects: React.FC<MagicalEffectsProps> = ({
           pulse: false
         },
         {
-          id: 'crystal-portal-1',
-          image: magicalCrystalPortal,
-          size: { width: 200, height: 200 },
+          id: 'energy-swirl-2',
+          image: purpleEnergySwirl,
+          size: { width: 180, height: 180 },
           duration: 30,
           delay: 8,
           path: 'M1600,600 Q1200,500 800,600 T0,550',
           zIndex: 3,
-          opacity: 0.4,
-          rotate: false,
+          opacity: 0.5,
+          rotate: true,
           pulse: true
         },
         {
           id: 'feather-1',
           image: goldenMagicFeather,
-          size: { width: 60, height: 60 },
+          size: { width: 80, height: 80 },
           duration: 22,
           delay: 6,
           path: 'M-100,100 Q400,50 800,150 T1600,100',
@@ -135,19 +133,19 @@ const MagicalEffects: React.FC<MagicalEffectsProps> = ({
         {
           id: 'fairy-about',
           image: magicalFairy,
-          size: { width: 90, height: 90 },
+          size: { width: 130, height: 130 },
           duration: 18,
           delay: 1,
           path: 'M-50,200 Q400,150 800,200 T1500,180',
           zIndex: 10,
-          opacity: 0.7,
+          opacity: 0.8,
           rotate: true,
           pulse: true
         },
         {
           id: 'energy-about',
           image: purpleEnergySwirl,
-          size: { width: 120, height: 120 },
+          size: { width: 140, height: 140 },
           duration: 20,
           delay: 4,
           path: 'M1500,300 Q1000,400 500,350 T-100,400',
@@ -159,27 +157,27 @@ const MagicalEffects: React.FC<MagicalEffectsProps> = ({
         {
           id: 'feather-about',
           image: goldenMagicFeather,
-          size: { width: 70, height: 70 },
+          size: { width: 90, height: 90 },
           duration: 16,
           delay: 7,
           path: 'M1600,500 Q1200,350 600,450 T-50,400',
           zIndex: 9,
-          opacity: 0.8,
+          opacity: 0.9,
           rotate: true,
           pulse: true
         }
       ],
       services: [
         {
-          id: 'crystal-portal-services',
-          image: magicalCrystalPortal,
+          id: 'fairy-services',
+          image: magicalFairy,
           size: { width: 160, height: 160 },
           duration: 25,
           delay: 0,
           path: 'M-100,250 Q300,200 700,300 T1400,250',
           zIndex: 8,
-          opacity: 0.6,
-          rotate: false,
+          opacity: 0.8,
+          rotate: true,
           pulse: true
         },
         {
@@ -195,15 +193,15 @@ const MagicalEffects: React.FC<MagicalEffectsProps> = ({
           pulse: true
         },
         {
-          id: 'butterfly-services',
-          image: magicalButterfly,
+          id: 'energy-services',
+          image: purpleEnergySwirl,
           size: { width: 85, height: 85 },
           duration: 22,
           delay: 3,
           path: 'M1600,150 Q1200,250 800,200 T200,300',
           zIndex: 10,
           opacity: 0.8,
-          rotate: false,
+          rotate: true,
           pulse: false
         }
       ],
@@ -211,24 +209,24 @@ const MagicalEffects: React.FC<MagicalEffectsProps> = ({
         {
           id: 'fairy-shop',
           image: magicalFairy,
-          size: { width: 100, height: 100 },
+          size: { width: 140, height: 140 },
           duration: 20,
           delay: 2,
           path: 'M-80,350 Q350,250 750,350 T1450,300',
           zIndex: 9,
-          opacity: 0.7,
+          opacity: 0.8,
           rotate: true,
           pulse: true
         },
         {
-          id: 'crystal-shop',
-          image: magicalCrystalPortal,
+          id: 'light-beam-shop',
+          image: mysticalLightBeam,
           size: { width: 130, height: 130 },
           duration: 28,
           delay: 6,
           path: 'M1550,200 Q1150,350 650,250 T50,400',
           zIndex: 7,
-          opacity: 0.5,
+          opacity: 0.6,
           rotate: false,
           pulse: true
         }
@@ -263,18 +261,18 @@ const MagicalEffects: React.FC<MagicalEffectsProps> = ({
         {
           id: 'feather-courses',
           image: goldenMagicFeather,
-          size: { width: 80, height: 80 },
+          size: { width: 110, height: 110 },
           duration: 19,
           delay: 0,
           path: 'M-70,250 Q250,180 550,280 T1250,220',
           zIndex: 10,
-          opacity: 0.8,
+          opacity: 0.9,
           rotate: true,
           pulse: true
         },
         {
-          id: 'butterfly-courses',
-          image: magicalButterfly,
+          id: 'light-beam-courses',
+          image: mysticalLightBeam,
           size: { width: 95, height: 95 },
           duration: 21,
           delay: 3,
@@ -282,14 +280,14 @@ const MagicalEffects: React.FC<MagicalEffectsProps> = ({
           zIndex: 9,
           opacity: 0.7,
           rotate: false,
-          pulse: false
+          pulse: true
         }
       ],
       contact: [
         {
           id: 'fairy-contact',
           image: magicalFairy,
-          size: { width: 85, height: 85 },
+          size: { width: 120, height: 120 },
           duration: 17,
           delay: 2,
           path: 'M-90,400 Q400,300 800,450 T1500,380',
