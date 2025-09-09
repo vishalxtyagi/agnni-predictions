@@ -268,51 +268,6 @@ const PremiumHome: React.FC = () => {
         </div>
       </section>
 
-      {/* Sacred Products Section */}
-      <section 
-        className="py-24 bg-divine-900 animate-on-scroll"
-        aria-labelledby="sacred-products-heading"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 id="sacred-products-heading" className="text-4xl lg:text-5xl font-bold font-cinzel text-luxury-300 mb-8">
-              Sacred Products & Crystals
-            </h2>
-            <p className="text-white/80 text-lg font-inter mb-8 max-w-3xl mx-auto">
-              Discover our collection of blessed crystals, protective items, and spiritual tools, each infused with sacred energy and divine mantras.
-            </p>
-            
-            {/* Cart Toggle Button */}
-            {getCartCount() > 0 && (
-              <div className="mb-8">
-                <button
-                  onClick={() => setIsCartOpen(true)}
-                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-gold-500 to-gold-600 text-black font-bold py-3 px-6 rounded-xl hover:shadow-gold-lg transition-all duration-300 interactive transform hover:scale-105"
-                >
-                  <span>View Cart ({getCartCount()})</span>
-                </button>
-              </div>
-            )}
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {products.slice(0, 6).map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-
-          <div className="text-center">
-            <a 
-              href="/Shop"
-              className="group inline-flex items-center space-x-3 bg-luxury-700 hover:bg-luxury-600 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 border border-luxury-500/30 hover:border-luxury-400/50 font-inter interactive transform hover:scale-105"
-            >
-              <span>View All Products</span>
-              <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* Interactive Crystal Gallery */}
       <div id="crystal-gallery" className="animate-on-scroll">
         <InteractiveCrystalGallery />

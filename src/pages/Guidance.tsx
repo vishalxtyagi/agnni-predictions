@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import FooterMenu from "../components/FooterMenu";
 import NewsLetter from "../components/NewsLetter";
 import CrownDecoration from "../components/CrownDecoration";
+import MagicalEffects from "../components/MagicalEffects";
+import ScrollBasedEffects from "../components/ScrollBasedEffects";
 import "/fonts.css";
 
 // Import AOS library
@@ -97,6 +99,12 @@ const Guidance = () => {
         backgroundAttachment: "fixed",
       }}
     >
+      {/* Magical Effects Layer - Background */}
+      <MagicalEffects page="guidance" intensity="medium" enableScrollTrigger={true} />
+      
+      {/* Scroll-Based Interactive Effects - Foreground */}
+      <ScrollBasedEffects className="z-10" />
+      
       <Navbar />
 
       {/* Header Section */}

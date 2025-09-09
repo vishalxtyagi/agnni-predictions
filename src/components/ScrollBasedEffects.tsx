@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
+import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 // Import effect images
@@ -10,56 +10,128 @@ import mysticalLightBeam from '../assets/effects/mystical-light-beam.png';
 
 interface ScrollBasedEffectsProps {
   className?: string;
+  reducedMotion?: boolean; // Option to reduce animations for performance
 }
 
-const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' }) => {
+const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ 
+  className = '', 
+  reducedMotion = false 
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const [windowHeight, setWindowHeight] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
 
-  // Track multiple sections for different effects
-  const [section1Ref, section1InView] = useInView({ threshold: 0.1 });
-  const [section2Ref, section2InView] = useInView({ threshold: 0.1 });
-  const [section3Ref, section3InView] = useInView({ threshold: 0.1 });
-  const [section4Ref, section4InView] = useInView({ threshold: 0.1 });
+  // Track multiple sections for different effects with optimized settings
+  const [section2Ref, section2InView] = useInView({ 
+    threshold: 0.1,
+    triggerOnce: false,
+    rootMargin: '-10% 0px -10% 0px' // Only trigger when more in view
+  });
 
-  useEffect(() => {
-    const updateDimensions = () => {
-      setWindowHeight(window.innerHeight);
-      setWindowWidth(window.innerWidth);
-    };
-    
-    updateDimensions();
-    window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
+  // Optimized dimension updates with debouncing
+  const updateDimensions = useCallback(() => {
+    setWindowHeight(window.innerHeight);
+    setWindowWidth(window.innerWidth);
   }, []);
 
-  // Scroll-based transforms for different effects
-  const fairyX = useTransform(scrollY, [0, 2000, 4000], [0, windowWidth * 0.8, windowWidth * 0.2]);
-  const fairyY = useTransform(scrollY, [0, 1000, 2000, 3000, 4000], [200, 150, 300, 100, 400]);
-  const fairyRotate = useTransform(scrollY, [0, 2000], [0, 360]);
+  useEffect(() => {
+    updateDimensions();
+    
+    let timeoutId: number;
+    const debouncedResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(updateDimensions, 150); // Debounce resize events
+    };
+    
+    window.addEventListener('resize', debouncedResize);
+    return () => {
+      window.removeEventListener('resize', debouncedResize);
+      clearTimeout(timeoutId);
+    };
+  }, [updateDimensions]);
 
-  const crystalX = useTransform(scrollY, [500, 2500, 4500], [windowWidth, windowWidth * 0.2, -100]);
-  const crystalY = useTransform(scrollY, [500, 1500, 2500, 3500], [300, 200, 450, 250]);
+  // Generate random starting positions and timing offsets (consistent per page load)
+  const randomOffsets = useMemo(() => ({
+    fairyStartX: Math.random() * 200 - 100, // -100 to 100
+    fairyStartY: Math.random() * 150 + 100, // 100 to 250
+    featherStartX: Math.random() * 300 + 50, // 50 to 350
+    featherStartY: Math.random() * 100 + 50, // 50 to 150
+    crystalStartOffset: Math.random() * 200 - 100, // -100 to 100
+    energyStartOffset: Math.random() * 150 - 75, // -75 to 75
+    scrollOffset: Math.random() * 300 + 100, // 100 to 400 scroll offset
+    timingVariation: Math.random() * 0.5 + 0.8, // 0.8 to 1.3 timing multiplier
+  }), []);
 
-  const energyX = useTransform(scrollY, [800, 3000], [-200, windowWidth + 200]);
-  const energyY = useTransform(scrollY, [800, 2000, 3000], [400, 200, 500]);
-  const energyRotate = useTransform(scrollY, [800, 3000], [0, 720]);
+  // Use useSpring for smoother animations that handle fast scrolling better
+  const scrollYSmooth = useSpring(scrollY, { 
+    stiffness: 100, 
+    damping: 30, 
+    mass: 0.5,
+    restSpeed: 0.01, // Prevent unnecessary updates
+    restDelta: 0.01
+  });
 
-  const portalScale = useTransform(scrollY, [1200, 2000, 3000], [0.5, 1.2, 0.8]);
-  const portalOpacity = useTransform(scrollY, [1200, 1800, 2500], [0, 1, 0.3]);
+  // Optimized scroll-based transforms with reduced complexity for performance
+  const fairyX = useTransform(
+    scrollYSmooth, 
+    [0, 2000 + randomOffsets.scrollOffset, 4000 + randomOffsets.scrollOffset], 
+    [randomOffsets.fairyStartX, windowWidth * 0.8, windowWidth * 0.2]
+  );
+  const fairyY = useTransform(
+    scrollYSmooth, 
+    [0, 1000 + randomOffsets.scrollOffset, 2000, 3000, 4000], 
+    [randomOffsets.fairyStartY, 150, 300, 100, 400]
+  );
+  const fairyRotate = useTransform(scrollYSmooth, [0, 2000 * randomOffsets.timingVariation], [0, 360]);
 
-  const featherX = useTransform(scrollY, [0, 4000], [windowWidth + 100, -200]);
-  const featherY = useTransform(scrollY, [0, 1000, 2000, 3000, 4000], [100, 50, 150, 80, 200]);
+  const crystalX = useTransform(
+    scrollYSmooth, 
+    [500 + randomOffsets.scrollOffset, 2500, 4500], 
+    [windowWidth + randomOffsets.crystalStartOffset, windowWidth * 0.2, -100]
+  );
+  const crystalY = useTransform(
+    scrollYSmooth, 
+    [500, 1500, 2500, 3500], 
+    [300 + randomOffsets.crystalStartOffset * 0.3, 200, 450, 250]
+  );
 
-  const lightBeamScale = useTransform(scrollY, [1500, 2500, 3500], [0.2, 1.5, 0.6]);
-  const lightBeamOpacity = useTransform(scrollY, [1500, 2000, 3000], [0, 0.8, 0.2]);
+  const energyX = useTransform(
+    scrollYSmooth, 
+    [800 + randomOffsets.scrollOffset, 3000], 
+    [-200 + randomOffsets.energyStartOffset, windowWidth + 200]
+  );
+  const energyY = useTransform(scrollYSmooth, [800, 2000, 3000], [400, 200, 500]);
+  const energyRotate = useTransform(scrollYSmooth, [800, 3000 * randomOffsets.timingVariation], [0, 720]);
+
+  const portalScale = useTransform(scrollYSmooth, [1200 + randomOffsets.scrollOffset, 2000, 3000], [0.5, 1.2, 0.8]);
+  const portalOpacity = useTransform(scrollYSmooth, [1200, 1800, 2500], [0, 1, 0.3]);
+
+  const featherX = useTransform(
+    scrollYSmooth, 
+    [0, 4000 * randomOffsets.timingVariation], 
+    [windowWidth + randomOffsets.featherStartX, -200]
+  );
+  const featherY = useTransform(
+    scrollYSmooth, 
+    [0, 1000, 2000, 3000, 4000], 
+    [randomOffsets.featherStartY, 50, 150, 80, 200]
+  );
+
+  const lightBeamScale = useTransform(scrollYSmooth, [1500, 2500, 3500], [0.2, 1.5, 0.6]);
+  const lightBeamOpacity = useTransform(scrollYSmooth, [1500, 2000, 3000], [0, 0.8, 0.2]);
   
-  const magicalParticleX = useTransform(scrollY, [0, 3000], [windowWidth + 100, -200]);
+  const magicalParticleX = useTransform(scrollYSmooth, [0, 3000], [windowWidth + 100, -200]);
 
   return (
-    <div className={`fixed inset-0 pointer-events-none overflow-hidden z-0 ${className}`} ref={containerRef}>
+    <div 
+      className={`fixed inset-0 pointer-events-none overflow-hidden z-0 ${className}`} 
+      ref={containerRef}
+      style={{
+        transform: 'translateZ(0)', // Force GPU layer
+        backfaceVisibility: 'hidden', // Optimize rendering
+      }}
+    >
       {/* Primary Fairy - Hero Journey */}
       <motion.div
         className="absolute"
@@ -67,16 +139,18 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
           x: fairyX,
           y: fairyY,
           rotate: fairyRotate,
-          zIndex: 20
+          zIndex: 20,
+          willChange: 'transform', // GPU optimization
         }}
         animate={{
           scale: [1, 1.1, 1],
         }}
         transition={{
           scale: {
-            duration: 3,
+            duration: 3 * randomOffsets.timingVariation,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
+            type: "tween" // More performance-friendly
           }
         }}
       >
@@ -86,15 +160,17 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
           className="w-32 h-32 md:w-40 md:h-40 select-none"
           style={{
             filter: 'drop-shadow(0 0 25px rgba(147, 51, 234, 0.8))',
+            willChange: 'transform', // GPU optimization
           }}
           animate={{
             rotate: [0, 5, -5, 0],
           }}
           transition={{
             rotate: {
-              duration: 4,
+              duration: 4 * randomOffsets.timingVariation,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
+              type: "tween" // More performance-friendly
             }
           }}
         />
@@ -274,36 +350,15 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
         />
       </motion.div>
 
-      {/* Section-based Triggered Effects */}
-      {section1InView && (
-        <motion.div
-          className="absolute top-20 left-10"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.7, scale: 1 }}
-          exit={{ opacity: 0, scale: 0 }}
-        >
-          <motion.img
-            src={magicalFairy}
-            alt="Section Fairy"
-            className="w-16 h-16 select-none"
-            animate={{
-              y: [0, -15, 0],
-              rotate: [0, 360],
-            }}
-            transition={{
-              y: { duration: 2, repeat: Infinity },
-              rotate: { duration: 8, repeat: Infinity, ease: "linear" }
-            }}
-            style={{
-              filter: 'drop-shadow(0 0 10px rgba(147, 51, 234, 0.5))',
-            }}
-          />
-        </motion.div>
-      )}
+
 
       {section2InView && (
         <motion.div
-          className="absolute top-40 right-20"
+          className="absolute"
+          style={{
+            top: `${40 + randomOffsets.featherStartY * 0.3}%`,
+            right: `${20 + randomOffsets.featherStartX * 0.1}%`
+          }}
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 0.6, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
@@ -327,21 +382,49 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
         </motion.div>
       )}
 
-      {/* Hidden div elements to track scroll sections */}
-      <div ref={section1Ref} className="absolute top-0 w-full h-screen" />
-      <div ref={section2Ref} className="absolute top-full w-full h-screen" />
-      <div ref={section3Ref} className="absolute" style={{ top: '200vh' }} />
-      <div ref={section4Ref} className="absolute" style={{ top: '300vh' }} />
+      {section2InView && (
+        <motion.div
+          className="absolute"
+          style={{
+            top: `${60 + randomOffsets.fairyStartY * 0.2}%`,
+            left: `${16 + randomOffsets.fairyStartX * 0.1}%`
+          }}
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 0.5, x: 0 }}
+          exit={{ opacity: 0, x: -100 }}
+        >
+          <motion.img
+            src={magicalFairy}
+            alt="Section Magical Fairy"
+            className="w-24 h-24 select-none"
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 10, -10, 0],
+            }}
+            transition={{
+              y: { duration: 3.5, repeat: Infinity },
+              rotate: { duration: 4, repeat: Infinity }
+            }}
+            style={{
+              filter: 'drop-shadow(0 0 12px rgba(147, 51, 234, 0.6))',
+            }}
+          />
+        </motion.div>
+      )}
 
-      {/* Ambient Particles */}
+      {/* Hidden div elements to track scroll sections */}
+      <div ref={section2Ref} className="absolute top-full w-full h-screen" />
+
+      {/* Ambient Particles - Reduced for performance */}
       <div className="absolute inset-0">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={`ambient-${i}`}
             className="absolute w-1 h-1 bg-purple-300 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              willChange: 'transform, opacity', // Optimize for GPU
             }}
             animate={{
               scale: [0.5, 1.5, 0.5],
@@ -352,7 +435,8 @@ const ScrollBasedEffects: React.FC<ScrollBasedEffectsProps> = ({ className = '' 
               duration: 4 + Math.random() * 3,
               repeat: Infinity,
               delay: Math.random() * 2,
-              ease: "easeInOut"
+              ease: "easeInOut",
+              type: "tween" // More performance-friendly than spring
             }}
           />
         ))}

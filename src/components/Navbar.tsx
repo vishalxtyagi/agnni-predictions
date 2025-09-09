@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Star, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import logoLight from "../assets/images/logos/agnni-logo-stacked.webp";
-import logoDark from "../assets/images/logos/agnni-logo-stacked.webp";
+import logoLight from "../assets/images/logos/agnni-logo-main.webp";
+import logoDark from "../assets/images/logos/agnni-logo-main.webp";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

@@ -204,11 +204,11 @@ const CrystalModal: React.FC<CrystalModalProps> = ({ crystal, isOpen, onClose, o
               </div>
 
               <button
-                onClick={() => onPurchase(crystal)}
+                onClick={() => window.location.href = '/Shop'}
                 className="w-full bg-gradient-to-r from-gold-500 via-gold-600 to-gold-500 hover:from-gold-400 hover:via-gold-500 hover:to-gold-400 text-black font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-gold hover:shadow-gold font-inter cta-button interactive flex items-center justify-center space-x-2"
               >
-                <ShoppingCart className="w-5 h-5" />
-                <span>Add to Sacred Collection</span>
+                <Eye className="w-5 h-5" />
+                <span>View in Products</span>
               </button>
             </div>
           </div>

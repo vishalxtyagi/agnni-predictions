@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CrownDecoration from "../components/CrownDecoration";
 import MagicalEffects from "../components/MagicalEffects";
+import ScrollBasedEffects from "../components/ScrollBasedEffects";
 import "/fonts.css";
 
 // Import service assets
@@ -41,6 +42,9 @@ const Consultation = () => {
     <div className="bg-divine-900 text-white font-inter overflow-hidden relative">
       {/* Magical Effects Layer */}
       <MagicalEffects page="consultation" intensity="medium" enableScrollTrigger={true} />
+      
+      {/* Scroll-Based Interactive Effects */}
+      <ScrollBasedEffects className="z-10" />
       
       <Navbar />
       <div className="relative pt-32 pb-20 bg-gradient-to-b from-luxury-900 to-divine-900">

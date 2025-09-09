@@ -21,7 +21,7 @@ interface EffectConfig {
 }
 
 interface MagicalEffectsProps {
-  page: 'home' | 'about' | 'services' | 'shop' | 'consultation' | 'courses' | 'contact';
+  page: 'home' | 'about' | 'services' | 'shop' | 'consultation' | 'courses' | 'contact' | 'guidance';
   intensity?: 'low' | 'medium' | 'high';
   enableScrollTrigger?: boolean;
 }
@@ -295,6 +295,44 @@ const MagicalEffects: React.FC<MagicalEffectsProps> = ({
           opacity: 0.6,
           rotate: true,
           pulse: true
+        }
+      ],
+      guidance: [
+        {
+          id: 'fairy-guidance-1',
+          image: magicalFairy,
+          size: { width: 140, height: 140 },
+          duration: 22,
+          delay: 1,
+          path: 'M-100,250 Q300,150 600,300 T1200,200 Q1500,150 1800,350',
+          zIndex: 10,
+          opacity: 0.8,
+          rotate: true,
+          pulse: true
+        },
+        {
+          id: 'feather-guidance',
+          image: goldenMagicFeather,
+          size: { width: 80, height: 80 },
+          duration: 18,
+          delay: 3,
+          path: 'M1600,400 Q1200,250 800,380 T200,320 Q-100,280 -300,450',
+          zIndex: 8,
+          opacity: 0.7,
+          rotate: false,
+          pulse: true
+        },
+        {
+          id: 'light-guidance',
+          image: mysticalLightBeam,
+          size: { width: 100, height: 100 },
+          duration: 25,
+          delay: 6,
+          path: 'M1800,150 Q1400,300 1000,180 T500,250 Q200,200 -200,350',
+          zIndex: 7,
+          opacity: 0.6,
+          rotate: true,
+          pulse: false
         }
       ]
     };

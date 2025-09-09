@@ -5,6 +5,7 @@ import NewsLetter from "../components/NewsLetter";
 import FooterMenu from "../components/FooterMenu";
 import CrownDecoration from "../components/CrownDecoration";
 import MagicalEffects from "../components/MagicalEffects";
+import ScrollBasedEffects from "../components/ScrollBasedEffects";
 import "/fonts.css";
 // Import AOS library
 import AOS from "aos";
@@ -75,6 +76,9 @@ const Courses = () => {
     >
       {/* Magical Effects Layer */}
       <MagicalEffects page="courses" intensity="medium" enableScrollTrigger={true} />
+      
+      {/* Scroll-Based Interactive Effects */}
+      <ScrollBasedEffects className="z-10" />
       
       <Navbar />
 
